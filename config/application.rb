@@ -12,6 +12,7 @@ require "sprockets/railtie"
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 SafeYAML::OPTIONS[:default_mode] = :safe
+ENV.update YAML.load_file('config/application.yml')
 
 module Footprints
   class Application < Rails::Application
