@@ -1,0 +1,2244 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
+/* Mixins
+-------------------------------------------------------------- */
+/* Colors
+-------------------------------------------------------------- */
+/* Layout
+-------------------------------------------------------------- */
+/* line 51, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -chrome-box-sizing: border-box;
+}
+
+/* line 57, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+html {
+  height: 100%;
+}
+
+/* line 61, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+body {
+  font-size: 100%;
+  color: #576978;
+  line-height: 1.5em;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+/* line 68, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+img {
+  width: 100%;
+}
+
+/* line 72, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.divide {
+  border-top: 1px solid #d3dadf;
+  display: block;
+  margin: 0 auto;
+  margin-top: 1.7em;
+  padding-bottom: 1.2em;
+  width: 60px;
+}
+
+/* line 81, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 90%;
+  padding: 1.5em 0;
+  position: relative;
+}
+/* line 89, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.container .narrow {
+  background: #fff;
+  margin: 2em auto;
+  max-width: 600px;
+  padding: 2em;
+  text-align: left;
+}
+
+/* line 98, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+section {
+  margin-bottom: 2em;
+}
+
+/* line 103, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.row {
+  padding: 1.25em 0;
+  width: 100%;
+}
+
+/* line 109, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column {
+  float: left;
+  margin-left: 5%;
+}
+/* line 112, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column:first-child {
+  margin-left: 0;
+}
+/* line 115, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column.full {
+  width: 100%;
+  margin: 0;
+}
+/* line 119, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column.middle {
+  float: none;
+  margin: 0 auto;
+  width: 80%;
+}
+@media (max-width: 700px) {
+  /* line 119, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .column.middle {
+    width: 100%;
+  }
+}
+/* line 127, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column.two-thirds {
+  width: 65%;
+}
+/* line 130, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column.half {
+  width: 47.5%;
+}
+/* line 133, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column.one-third {
+  width: 30%;
+}
+/* line 136, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column.one-fourth {
+  width: 21.2%;
+}
+/* line 139, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column.three-fourths {
+  width: 73.8%;
+}
+/* line 142, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column.two-fifths {
+  width: 40%;
+}
+/* line 145, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column.three-fifths {
+  width: 55%;
+}
+/* line 148, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column.half-margin {
+  margin-left: 3%;
+}
+/* line 150, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.column.half-margin .container {
+  width: 100%;
+}
+
+@media screen and (max-width: 640px) {
+  /* line 157, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .column {
+    margin: 0;
+  }
+  /* line 166, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .column.full, .column.two-thirds, .column.half, .column.one-third, .column.one-fourth, .column.two-fifths, .column.three-fourths, .column.three-fifths {
+    width: 100%;
+  }
+  /* line 169, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .column.half-margin {
+    margin: 0;
+  }
+  /* line 171, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .column.half-margin .container {
+    width: 90%;
+  }
+  /* line 175, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .column.flow-opposite {
+    float: none;
+    margin: 0 0 1.5em 0;
+  }
+}
+/* line 182, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.fl {
+  float: left;
+}
+
+/* line 183, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.fr {
+  float: right;
+}
+
+/* line 185, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.margin-left {
+  margin-left: 1em;
+}
+
+/* line 186, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.margin-right {
+  margin-right: 1em;
+}
+
+/* Typography
+-------------------------------------------------------------- */
+/* line 190, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+h1 {
+  color: #576978;
+  font-size: 3em;
+  font-weight: 300;
+  line-height: 1.3em;
+  margin: 0.5em 0;
+}
+@media screen and (max-width: 500px) {
+  /* line 190, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  h1 {
+    font-size: 2em;
+  }
+}
+
+/* line 201, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+h2 {
+  font-size: 1.333em;
+  line-height: 1.3em;
+  margin: 1em 0 0.6em 0;
+}
+
+/* line 207, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+h3 {
+  font-size: 1.47em;
+  line-height: 1.3em;
+  margin: 1em 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+/* line 214, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+h4 {
+  font-weight: 400;
+  margin: 1em 0;
+}
+
+/* line 219, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+h5 {
+  color: #8894a0;
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* line 227, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+a {
+  color: #21bd8b;
+  text-decoration: none;
+  margin: 0;
+}
+
+/* line 233, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+a:hover {
+  text-decoration: underline;
+}
+
+/* line 237, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.blend {
+  color: inherit;
+}
+
+/* line 241, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+p {
+  margin: 0 0 1em 0;
+}
+
+/* line 245, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+em {
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Navigation
+-------------------------------------------------------------- */
+/* line 252, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+header {
+  background: white;
+  overflow: hidden;
+}
+/* line 255, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+header .container {
+  padding: 0;
+}
+/* line 258, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+header h1 {
+  display: inline-block;
+  float: left;
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.5em;
+  margin: 0;
+  padding: 2.1em 0;
+  text-transform: uppercase;
+}
+/* line 268, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+header h1 a {
+  color: #8894a0;
+  -webkit-transition: color 0.3s;
+  -moz-transition: color 0.3s;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+/* line 274, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+header h1 a:hover {
+  color: #576978;
+  text-decoration: none;
+}
+
+/* line 282, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.nav-link {
+  color: #8894a0;
+  -webkit-transition: color 0.3s;
+  -moz-transition: color 0.3s;
+  transition: color 0.3s;
+  float: right;
+  font-size: 0.8em;
+  font-weight: 600;
+  display: inline-block;
+  letter-spacing: 1px;
+  margin: 0 2em;
+  padding: 2.6em 0;
+  text-transform: uppercase;
+}
+/* line 295, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.nav-link:hover {
+  color: #626e7a;
+  text-decoration: none;
+}
+
+/* line 301, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav {
+  background: #576978;
+  border-top: 1px solid #eef2f5;
+}
+/* line 306, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav ul {
+  overflow: hidden;
+  padding: 1.5em 0;
+}
+/* line 310, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav li {
+  display: inline-block;
+  width: 100%;
+}
+/* line 314, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav a {
+  color: white;
+  display: inline-block;
+  font-size: 1.5em;
+  font-weight: 300;
+  float: left;
+  text-align: center;
+  opacity: 0.6;
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  padding: 1em 1em;
+  width: 33%;
+}
+/* line 327, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav a:hover {
+  opacity: 1;
+}
+@media (max-width: 640px) {
+  /* line 314, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  nav a {
+    padding: 1.5em 0;
+    width: 100%;
+  }
+}
+/* line 335, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav p {
+  font-size: 0.6em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* line 341, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav .nav-icon {
+  background-repeat: no-repeat;
+  background-size: 74px;
+  height: 74px;
+  width: 74px;
+  display: block;
+  margin: 0 auto;
+}
+/* line 348, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav .nav-icon.applicants {
+  background-image: url(/assets/applicants.png);
+}
+/* line 351, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav .nav-icon.craftsmen {
+  background-image: url(/assets/craftsmen.png);
+}
+/* line 354, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav .nav-icon.new-applicants {
+  background-image: url(/assets/new-applicants.png);
+}
+/* line 357, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav .nav-icon.profile {
+  background-image: url(/assets/profile.png);
+}
+/* line 360, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav .nav-icon.salaries {
+  background-image: url(/assets/salary.png);
+}
+/* line 363, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav .nav-icon.templates {
+  background-image: url(/assets/templates.png);
+}
+/* line 366, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav .nav-icon.reporting {
+  background-image: url(/assets/reporting.png);
+}
+
+/* line 372, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.toggle-nav {
+  background-image: url(/assets/toggle@2x.png);
+  background-size: 42px;
+  cursor: pointer;
+  display: block;
+  float: right;
+  margin: 1.5em 0;
+  height: 42px;
+  width: 42px;
+}
+
+/* line 383, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav.hidden {
+  height: 0;
+  -webkit-transition: height 0.3s;
+  -moz-transition: height 0.3s;
+  transition: height 0.3s;
+}
+
+/* line 390, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+nav.visible {
+  height: 490px;
+  -webkit-transition: height 0.3s;
+  -moz-transition: height 0.3s;
+  transition: height 0.3s;
+}
+@media (max-width: 640px) {
+  /* line 390, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  nav.visible {
+    height: auto;
+  }
+}
+
+/* Buttons
+-------------------------------------------------------------- */
+/* line 402, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.button, a.button, input[type=submit] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #eef2f5;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.6em 2em;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 150ms ease-in-out;
+  white-space: nowrap;
+  font-style: normal;
+  line-height: 1.5em;
+  box-shadow: inset 0 -3px 0 #808080;
+}
+/* line 422, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.button.primary, a.button.primary, input[type=submit].primary {
+  background: #21bd8b;
+  box-shadow: inset 0 -3px 0 #0EA071;
+}
+/* line 425, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.button.primary:hover, a.button.primary:hover, input[type=submit].primary:hover {
+  background: #1db181;
+}
+/* line 429, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.button.secondary, a.button.secondary, input[type=submit].secondary {
+  background: #f5f7f9;
+  border: 1px solid #DEE2E6;
+  color: #A2ABB2;
+  box-shadow: inset 0 -3px 0 #D6DBDF;
+}
+/* line 434, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.button.secondary:hover, a.button.secondary:hover, input[type=submit].secondary:hover {
+  background: #EDF0F3;
+  text-decoration: none;
+}
+/* line 439, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.button.full, a.button.full, input[type=submit].full {
+  width: 100%;
+  display: block;
+}
+/* line 443, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.button.small, a.button.small, input[type=submit].small {
+  font-size: 1em;
+  padding: 0.3em 0.8em 0.4em 0.8em;
+}
+
+@media (max-width: 640px) {
+  /* line 450, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .button {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+/* Cards
+-------------------------------------------------------------- */
+/* line 460, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.card {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px #aaa;
+  background: white;
+  margin-bottom: 2em;
+  position: relative;
+}
+/* line 468, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.card h2 {
+  font-size: 1.6em;
+  font-weight: 400;
+  margin: 0 0 0.7em 0;
+}
+
+/* line 475, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.card-header {
+  padding: 1.5em 1.5em 0.8em 1.5em;
+}
+
+/* line 483, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-name {
+  color: #576978;
+  -webkit-transition: color 0.3s;
+  -moz-transition: color 0.3s;
+  transition: color 0.3s;
+  display: inline-block;
+  font-size: 1.6em;
+  font-weight: 400;
+  margin: 0 0 0.8em 0;
+}
+/* line 492, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-name:hover {
+  color: #21bd8b;
+  text-decoration: none;
+}
+
+/* line 498, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.card-sub-header {
+  color: #8894a0;
+  font-size: 0.9em;
+}
+
+/* line 503, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.card-data-list {
+  border-bottom: 1px solid #eef2f5;
+  border-top: 1px solid #eef2f5;
+  overflow: hidden;
+}
+/* line 507, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.card-data-list li {
+  float: left;
+  padding: 1em;
+  width: 33%;
+}
+/* line 511, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.card-data-list li:nth-of-type(2n) {
+  border-left: 1px solid #eef2f5;
+  border-right: 1px solid #eef2f5;
+}
+@media (max-width: 640px) {
+  /* line 507, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .card-data-list li {
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #eef2f5;
+    width: 100%;
+  }
+  /* line 520, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .card-data-list li:first-child {
+    border-top: none;
+  }
+  /* line 523, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .card-data-list li:nth-of-type(2n) {
+    border-left: none;
+    border-right: none;
+  }
+}
+
+/* line 531, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.card-data {
+  color: #576978;
+  display: block;
+  line-height: 1.4em;
+  text-align: center;
+  width: 100%;
+}
+
+/* line 539, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.card-label {
+  color: #8894a0;
+  display: block;
+  font-size: 0.7em;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Dashboard
+-------------------------------------------------------------- */
+/* line 550, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dashboard-header {
+  background: #eef2f5;
+  border-bottom: 1px solid #eef2f5;
+  padding: 2em 0;
+  margin: 0;
+}
+/* line 555, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dashboard-header .container {
+  padding: 0;
+}
+/* line 558, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dashboard-header h1 {
+  color: #576978;
+  font-size: 2.4em;
+  margin: 0.3em 0;
+  text-align: center;
+}
+/* line 564, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dashboard-header h5 {
+  color: #8894a0;
+  font-weight: 400;
+  margin: 0.5em 0 0 0;
+  text-align: center;
+}
+
+/* line 574, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dashboard .current-applicants li {
+  overflow: hidden;
+  margin-bottom: 1.5em;
+}
+/* line 578, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dashboard .current-applicants .applicant-name {
+  padding: 0.8em 0.5em;
+  margin-bottom: 0;
+}
+/* line 582, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dashboard .current-applicants .applicant-actions {
+  border: 1px solid #eef2f5;
+  display: block;
+  float: none;
+  padding: 0.7em 0.8em;
+}
+/* line 589, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dashboard .applicant-list {
+  color: #8894a0;
+  line-height: 1.8em;
+  display: inline-block;
+}
+/* line 594, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dashboard .applicant-actions {
+  float: right;
+}
+/* line 596, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dashboard .applicant-actions .button {
+  margin-left: 0.5em;
+}
+/* line 598, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dashboard .applicant-actions .button:first-child {
+  margin: 0;
+}
+
+/* Status
+-------------------------------------------------------------- */
+/* line 607, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.status-text {
+  padding: 1em 0 0 0;
+  font-size: 0.9em;
+}
+/* line 610, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.status-text i {
+  margin-right: 0.5em;
+}
+
+/* line 615, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.status {
+  background: #eef2f5;
+  -moz-border-radius: 0 0 2px 2px;
+  -webkit-border-radius: 0 0 2px 2px;
+  border-radius: 0 0 2px 2px;
+  padding: 0.5em 1.4em;
+}
+
+/* line 623, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.state-holder {
+  height: 8px;
+  margin: 1em 0;
+}
+/* line 626, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.state-holder span {
+  background: white;
+  border-left: 3px solid #eef2f5;
+  cursor: pointer;
+  display: block;
+  float: left;
+  height: 8px;
+  width: 16.6%;
+}
+/* line 634, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.state-holder span.current-state {
+  background: #21bd8b;
+}
+
+/* line 640, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.alert {
+  color: #576978;
+  display: block;
+  line-height: 1.4em;
+  width: 100%;
+}
+
+/* line 647, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.alert-warning {
+  color: #e73f46;
+  font-weight: 600;
+}
+
+/* Applicants
+-------------------------------------------------------------- */
+/* Index Overrides */
+/* line 657, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-list.card {
+  margin-bottom: 0;
+}
+@media (max-width: 640px) {
+  /* line 657, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .applicant-list.card {
+    margin-bottom: 1.5em;
+  }
+}
+
+/* line 665, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-list .applicant-name {
+  font-size: 1.8em;
+  margin: 0.2em 0 0.3em 0;
+}
+/* line 669, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-list .alert {
+  display: inline-block;
+  width: auto;
+}
+/* line 673, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-list .card-header {
+  padding: 1em;
+}
+/* line 676, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-list .card-data-list {
+  margin: 1em 0;
+}
+/* line 678, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-list .card-data-list li {
+  padding: 0.8em 0 0.6em 0;
+}
+/* line 682, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-list .card-data {
+  font-size: 0.8em;
+}
+/* line 685, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-list .card-label {
+  font-size: 0.6em;
+}
+/* line 688, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-list .status {
+  padding: 0.5em 1em;
+}
+
+/* line 693, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-actions {
+  float: right;
+}
+@media (max-width: 640px) {
+  /* line 693, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .applicant-actions {
+    float: none;
+    margin-bottom: 1em;
+  }
+}
+/* line 699, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-actions form {
+  display: inline;
+}
+
+/* Profile Overrides */
+/* line 706, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.profile-list {
+  list-style: none;
+  margin: 0;
+  padding: 1em 0;
+}
+/* line 711, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.profile-list li {
+  display: block;
+  margin-bottom: .5em;
+}
+
+/* line 719, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .status {
+  padding: 0;
+  margin-top: 1.5em;
+}
+/* line 722, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .status .state-holder {
+  margin: 0;
+}
+/* line 724, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .status .state-holder span {
+  background: #eef2f5;
+  border-left: 3px solid white;
+  width: 16.65%;
+}
+/* line 728, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .status .state-holder span.current-state {
+  background: #21bd8b;
+}
+/* line 734, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .card {
+  box-shadow: none;
+}
+/* line 737, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .status-text {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAOElEQVQYV2P8+uPXfwYcgJuDjZERlwKQJEgOqwKYJMhgDAXIkhgK0CVRFGCThCvAJQlWACLweRUA2t43U5BfiScAAAAASUVORK5CYII=") repeat;
+  font-size: 1em;
+  margin: 1em 0;
+  padding: 1em 0;
+  text-align: center;
+}
+/* line 744, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .card-header {
+  padding: 0;
+}
+/* line 746, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .card-header .applicant-name {
+  color: #576978;
+  font-size: 2.8em;
+  font-weight: 300;
+  margin: 0.6em 0 0.5em -2px;
+}
+/* line 751, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .card-header .applicant-name:hover {
+  color: #21bd8b;
+  text-decoration: none;
+}
+/* line 756, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .card-header .applicant-email {
+  margin-bottom: 1.5em;
+}
+/* line 760, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .card-data-list {
+  margin: 1.8em 0;
+}
+/* line 762, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .card-data-list li {
+  border: none;
+  float: left;
+  padding: 1.2em 0 1em 0;
+  width: 20%;
+}
+@media (max-width: 640px) {
+  /* line 762, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .applicant-profile .card-data-list li {
+    border-top: 1px solid #eef2f5;
+    width: 100%;
+  }
+  /* line 770, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .applicant-profile .card-data-list li:first-child {
+    border-top: none;
+  }
+}
+/* line 775, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-profile .card-data-list .card-data {
+  font-size: 1.2em;
+  margin: 0.3em 0;
+}
+
+/* Tooltips
+-------------------------------------------------------------- */
+/* line 784, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.tooltip {
+  position: relative;
+}
+
+/* line 788, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.tooltip:before {
+  content: "";
+}
+
+/* line 792, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.tooltip strong {
+  background: #576978;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 400;
+  line-height: 1.3em;
+  margin-left: -75px;
+  margin-top: -33px;
+  padding: 10px;
+  text-align: center;
+  opacity: 0;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  -moz-transition: opacity 0.5s ease;
+  -webkit-transition: opacity 0.5s ease;
+  -o-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+  width: 150px;
+  z-index: 100;
+}
+
+/* line 817, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.tooltip strong:before {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #576978;
+  z-index: 5;
+  content: " ";
+  position: absolute;
+  top: -5px;
+  left: 48%;
+}
+
+/* line 830, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.tooltip:hover strong {
+  opacity: 1;
+}
+
+/* Flash Messages
+-------------------------------------------------------------- */
+/* line 836, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.flash {
+  background: #29323c;
+  position: relative;
+  z-index: 9999;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  margin-bottom: 0;
+  padding: 1em 0;
+  margin: 0 auto;
+  text-align: center;
+}
+/* line 847, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.flash.notice {
+  background: #21bd8b;
+}
+/* line 850, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.flash.warning {
+  background: #e73f46;
+}
+
+/* forms
+-------------------------------------------------------------- */
+/* line 857, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+form, .form-column {
+  max-width: 700px;
+}
+/* line 859, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+form p, .form-column p {
+  margin: 1em 0;
+}
+
+/* line 864, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.form-narrow {
+  max-width: 300px;
+}
+/* line 866, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.form-narrow.left {
+  float: left;
+}
+
+/* line 871, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.inline-input {
+  display: inline;
+  float: left;
+}
+
+/* line 876, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+label {
+  display: block;
+  color: #8894a0;
+  margin-bottom: 0.5em;
+}
+
+/* line 882, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+input[type=password], input[type=text], input[type=tel], input[type=email], input[type=url], textarea {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #626e7a;
+  display: block;
+  height: 48px;
+  line-height: 1.5em;
+  margin-bottom: 1.5em;
+  padding: 0.5em;
+  -moz-transition: border 150ms ease-in-out;
+  -webkit-transition: border 150ms ease-in-out;
+  transition: border 150ms ease-in-out;
+  width: 100%;
+}
+/* line 901, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+input[type=password]:focus, input[type=text]:focus, input[type=tel]:focus, input[type=email]:focus, input[type=url]:focus, textarea:focus {
+  border: 1px solid #8894a0;
+  outline: none;
+}
+/* line 905, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+input[type=password].mailing-list, input[type=text].mailing-list, input[type=tel].mailing-list, input[type=email].mailing-list, input[type=url].mailing-list, textarea.mailing-list {
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+  width: 300px;
+}
+/* line 910, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+input[type=password].erroneous, input[type=text].erroneous, input[type=tel].erroneous, input[type=email].erroneous, input[type=url].erroneous, textarea.erroneous {
+  border: 1px solid #e73f46;
+}
+
+/* line 915, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+input[type=checkbox], input[type=radio] {
+  margin: 0.2em 0.6em 0.2em 0;
+}
+
+/* line 919, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+input[type=text]:disabled {
+  border: none;
+}
+
+/* line 923, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+textarea {
+  min-height: 150px;
+}
+
+/* line 927, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+select {
+  margin-bottom: 1.5em;
+  width: 100%;
+}
+
+/* line 932, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.field-errors {
+  margin: 0 0 0.5em 0;
+}
+/* line 934, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.field-errors .field-error {
+  color: #e73f46;
+}
+
+/* line 939, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+#admin_confirmation input {
+  width: 8%;
+  float: left;
+}
+
+/* line 945, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+#admin_confirmation label {
+  width: 85%;
+  float: right;
+  display: block;
+}
+
+/* line 951, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+#status {
+  margin: 0.625em 0 0 1em;
+  width: 100%;
+}
+
+/* line 957, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.salaries h1 {
+  margin-top: 0;
+}
+/* line 960, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.salaries h2 {
+  margin-top: 2em;
+}
+
+/* line 966, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.salary-form table label {
+  margin: 0;
+}
+/* line 969, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.salary-form input[type="text"] {
+  display: inline;
+  margin: 0;
+  width: 110px;
+}
+/* line 974, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.salary-form td {
+  padding: 0.4em 0;
+  width: 300px;
+}
+
+/* line 980, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.salary-btn {
+  display: block;
+  margin: 0 auto;
+}
+
+/* line 985, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.delete-salary-link {
+  margin-left: 1em;
+  padding: .3em;
+  border: 2px solid white;
+}
+
+/* line 991, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+#offer-letter-form .form {
+  background: white;
+}
+
+/* line 995, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.unarchive {
+  margin-bottom: 1em;
+}
+
+/* line 999, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.divider {
+  color: #CCD3DA;
+  display: inline-block;
+  padding: 0 0.2em;
+}
+
+/* line 1005, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.our-court {
+  color: red;
+}
+
+/* line 1010, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+input.required {
+  border: 1px solid #e73f46;
+}
+
+/* line 1014, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.action-needed {
+  font-size: 1.2em;
+}
+
+/* line 1018, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+#pagination {
+  text-align: center;
+  padding: 1em;
+}
+
+/* line 1023, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+#pagination a {
+  text-decoration: none;
+  padding: .5em;
+}
+
+/* line 1028, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+#pagination a:hover {
+  -webkit-transition: color .3s ease-in-out;
+  -moz-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out;
+  text-decoration: underline;
+}
+
+/* line 1033, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.filter {
+  background: #aaa;
+}
+
+/* --- EASYDROPDOWN DEFAULT THEME --- */
+/* PREFIXED CSS */
+/* line 1044, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown,
+.dropdown div,
+.dropdown li,
+.dropdown div::after {
+  -webkit-transition: all 150ms ease-in-out;
+  -moz-transition: all 150ms ease-in-out;
+  -ms-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+
+/* line 1052, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown .selected::after,
+.dropdown.scrollable div::after {
+  -webkit-pointer-events: none;
+  -moz-pointer-events: none;
+  -ms-pointer-events: none;
+  pointer-events: none;
+}
+
+/* WRAPPER */
+/* line 1061, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown {
+  position: relative;
+  width: 250px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 3px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* line 1073, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown.open {
+  z-index: 2;
+}
+
+/* line 1077, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+/* line 1081, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown.focus {
+  box-shadow: 0 0 5px rgba(51, 102, 248, 0.4);
+}
+
+/* CARAT */
+/* line 1087, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown .carat {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  margin-top: -4px;
+  border: 6px solid transparent;
+  border-top: 8px solid #8894a0;
+}
+
+/* line 1096, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown.open .carat {
+  margin-top: -10px;
+  border-top: 6px solid transparent;
+  border-bottom: 8px solid #8894a0;
+}
+
+/* line 1102, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown.disabled .carat {
+  border-top-color: #999;
+}
+
+/* OLD SELECT (HIDDEN) */
+/* line 1108, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown .old {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* line 1117, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown select {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+/* line 1123, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown.touch .old {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 1128, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown.touch select {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+/* SELECTED FEEDBACK ITEM */
+/* line 1137, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown .selected,
+.dropdown li {
+  display: block;
+  font-size: 1em;
+  line-height: 1;
+  color: #8894a0;
+  padding: 15px 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* line 1147, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown.disabled .selected {
+  color: #999;
+}
+
+/* line 1151, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown .selected::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  border-radius: 0 2px 2px 0;
+  box-shadow: inset -55px 0 25px -20px #fff;
+}
+
+/* DROP DOWN WRAPPER */
+/* line 1164, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown div {
+  position: absolute;
+  height: 0;
+  left: -1px;
+  right: -1px;
+  top: 100%;
+  margin-top: -1px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-top: 1px solid #eee;
+  border-radius: 0 0 3px 3px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+/* Height is adjusted by JS on open */
+/* line 1181, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown.open div {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* FADE OVERLAY FOR SCROLLING LISTS */
+/* line 1188, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown.scrollable div::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  box-shadow: inset 0 -50px 30px -35px #fff;
+}
+
+/* line 1198, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown.scrollable.bottom div::after {
+  opacity: 0;
+}
+
+/* DROP DOWN LIST */
+/* line 1204, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown ul {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  list-style: none;
+  overflow: hidden;
+}
+
+/* line 1214, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown.scrollable.open ul {
+  overflow-y: auto;
+}
+
+/* DROP DOWN LIST ITEMS */
+/* line 1220, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown li {
+  list-style: none;
+  padding: 12px 12px;
+}
+
+/* .focus class is also added on hover */
+/* line 1227, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown li.focus {
+  background: #576978;
+  position: relative;
+  z-index: 3;
+  color: #fff;
+}
+
+/* line 1234, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.dropdown li.active {
+  font-weight: 700;
+}
+
+/* Sessions
+-------------------------------------------------------------- */
+/* line 1241, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.login .button {
+  display: block;
+  margin-top: 1em;
+  width: 350px;
+}
+
+/* line 1249, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.sessions #flash-errors, .dashboard #flash-errors {
+  top: 15%;
+  position: absolute;
+}
+/* line 1252, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.sessions #flash-errors h3, .dashboard #flash-errors h3 {
+  color: #eef2f5;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+/* line 1257, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.sessions .logo, .dashboard .logo {
+  display: block;
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 2em 0;
+  text-transform: uppercase;
+}
+
+/* Overrides
+-------------------------------------------------------------- */
+/* line 1271, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.profile h1 {
+  margin: 0.3em 0 0 0;
+}
+
+/* line 1275, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.seeking h5 {
+  margin-top: 0;
+}
+/* line 1276, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.seeking p {
+  margin: 0 0 1em 0;
+}
+
+/* line 1280, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.unassigned .card {
+  overflow: hidden;
+}
+/* line 1283, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.unassigned .applicant-name {
+  padding: 0.8em 0.5em;
+  margin-bottom: 0;
+}
+/* line 1287, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.unassigned .applicant-details {
+  padding: 0.8em 0.5em;
+  margin-bottom: 0;
+}
+/* line 1291, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.unassigned .applicant-actions {
+  background: white;
+  display: block;
+  float: right;
+  margin: 0;
+  padding: 0.7em 0.8em;
+}
+@media (max-width: 640px) {
+  /* line 1291, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .unassigned .applicant-actions {
+    float: none;
+  }
+}
+
+/* line 1303, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.stewardship-decision h3 {
+  margin: 10px auto;
+  padding: 6px 0;
+}
+
+/* line 1308, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.new-applicant-link {
+  float: right;
+}
+
+/* line 1313, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-app h2 {
+  margin: 0 0 0.5em 0;
+}
+/* line 1314, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-app h5 {
+  color: #8894a0;
+}
+/* line 1315, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-app p {
+  margin-bottom: 2em;
+}
+
+/* line 1318, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.archived-checkbox {
+  margin-left: 100px;
+}
+
+/* Notes
+-------------------------------------------------------------- */
+/* line 1325, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-notes h5 {
+  color: #8894a0;
+}
+/* line 1328, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-notes textarea {
+  margin-bottom: 1em;
+  padding: 1em;
+  width: 100%;
+}
+/* line 1333, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.applicant-notes .applicant-note-form-submit-button {
+  width: 100%;
+}
+
+/* line 1338, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.note {
+  border: 1px solid #eef2f5;
+  margin-bottom: 1em;
+}
+
+/* line 1343, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.note-header {
+  border-bottom: 1px solid #eef2f5;
+  padding: 0.4em 0.6em;
+  overflow: hidden;
+}
+/* line 1347, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.note-header .note-author {
+  color: #8894a0;
+  display: inline-block;
+  float: left;
+  line-height: 2em;
+}
+/* line 1353, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.note-header .button {
+  float: right;
+}
+
+/* line 1358, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.note-body {
+  background: #f5f8fa;
+  padding: 1.5em 1em;
+}
+/* line 1361, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.note-body .edit-note {
+  display: inline-block;
+  float: right;
+}
+
+/* line 1367, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.update-note {
+  width: 100%;
+}
+
+/* line 1371, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.center {
+  text-align: center;
+}
+
+/* Templates
+-------------------------------------------------------------- */
+/* line 1377, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.template-menu {
+  margin: 0;
+  padding: 0 0 0 1.3em;
+}
+
+/* line 1382, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.template-menu li {
+  margin-bottom: 0.5rem;
+}
+
+/* line 1386, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.table-of-contents {
+  position: fixed;
+  margin: 1.8em 0;
+}
+@media (max-width: 640px) {
+  /* line 1386, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .table-of-contents {
+    position: relative;
+  }
+}
+
+/* line 1394, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.template-content {
+  float: right;
+}
+/* line 1396, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.template-content ul {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+/* line 1399, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.template-content ul li {
+  text-indent: -1em;
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+}
+/* line 1406, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.template-content p {
+  margin: 0 0 1em 0;
+}
+/* line 1408, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.template-content ul ul {
+  list-style-type: circle;
+  list-style-position: inside;
+  margin-left: 15px;
+}
+/* line 1412, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.template-content ul ul li {
+  text-indent: -1em;
+  margin-left: 1em;
+}
+/* line 1418, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.template-content ul ul ul {
+  list-style-type: square;
+  list-style-position: inside;
+  margin-left: 30px;
+}
+/* line 1422, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.template-content ul ul ul li {
+  text-indent: -1em;
+  margin-left: 1em;
+}
+
+/* Analytics
+-------------------------------------------------------------- */
+/* line 1431, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.analytics .one-half {
+  padding: 0 2%;
+}
+
+/* line 1434, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.analytics .one-half:nth-child(odd) {
+  padding-left: 0;
+}
+
+/* line 1437, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.analytics p {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  line-height: 150%;
+  margin-top: 0.625em;
+  padding: 0.3125em 0.625em;
+}
+
+/* line 1445, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.analytics p:nth-child(even) {
+  background: #eee;
+}
+
+/* Apprentices
+-------------------------------------------------------------- */
+/* line 1452, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.apprentices table {
+  width: 100%;
+}
+
+/* Reporting
+-------------------------------------------------------------- */
+/* line 1460, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.reporting th {
+  background: #e9e9e9;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-color: #fff;
+  padding: .3em .6em;
+}
+/* line 1468, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.reporting td {
+  border: 1px solid #ccc;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  /* line 1474, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .reporting table {
+    width: 100%;
+  }
+  /* line 1478, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .reporting thead {
+    display: none;
+  }
+  /* line 1483, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .reporting tbody tr th {
+    display: block;
+    border-color: #ccc;
+  }
+  /* line 1488, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .reporting tbody tr td {
+    display: block;
+    padding: .6rem;
+    text-align: right;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: none;
+    border-top: none;
+  }
+  /* line 1498, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .reporting tbody tr td:nth-child(even) {
+    background: #f6f6f6;
+  }
+  /* line 1502, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .reporting tbody td:before {
+    content: attr(data-heading);
+    font-weight: bold;
+    display: inline-block;
+    float: left;
+  }
+}
+/* line 1511, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.reporting #reporting-graph-container {
+  height: 200px;
+  margin-bottom: 4em;
+}
+@media screen and (max-width: 768px) {
+  /* line 1511, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .reporting #reporting-graph-container {
+    margin-bottom: 7em;
+  }
+}
+/* line 1520, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.reporting #reporting-graph-legend {
+  text-align: center;
+  margin: 1em 0;
+}
+/* line 1524, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.reporting #reporting-graph-legend .bar-legend li {
+  display: inline;
+  position: relative;
+  padding-left: 1.5em;
+  padding-right: 3em;
+}
+/* line 1531, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.reporting #reporting-graph-legend .bar-legend li span {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  border-radius: 5px;
+}
+@media screen and (max-width: 768px) {
+  /* line 1520, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .reporting #reporting-graph-legend {
+    text-align: left;
+  }
+  /* line 1544, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .reporting #reporting-graph-legend .bar-legend li {
+    display: block;
+    padding-left: 3em;
+    margin-bottom: .2em;
+  }
+  /* line 1550, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+  .reporting #reporting-graph-legend .bar-legend li span {
+    margin-left: 1em;
+  }
+}
+
+/* Clearfix
+-------------------------------------------------------------- */
+/* line 1559, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.container, section, .row, nav, .actions, .profile-list li {
+  *zoom: 1;
+}
+/* line 1561, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.container:before, section:before, .row:before, nav:before, .actions:before, .profile-list li:before, .container:after, section:after, .row:after, nav:after, .actions:after, .profile-list li:after {
+  content: " ";
+  display: table;
+}
+/* line 1565, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.container:after, section:after, .row:after, nav:after, .actions:after, .profile-list li:after {
+  clear: both;
+}
+
+/* JQuery UI Overrides
+-------------------------------------------------------------- */
+/* line 1573, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.ui-widget-content {
+  background: white !important;
+  border: 1px solid #eef2f5 !important;
+  color: #576978 !important;
+}
+
+/* line 1579, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.ui-widget {
+  color: #576978 !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+/* line 1584, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.ui-widget-header {
+  border: 1px solid white !important;
+  background: white !important;
+  color: #576978 !important;
+  font-weight: normal !important;
+}
+
+/* line 1591, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  border: 1px solid #f5f8fa !important;
+  background: #f5f8fa !important;
+  color: #576978 !important;
+}
+
+/* line 1599, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-header .ui-state-hover,
+.ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header
+.ui-state-focus {
+  border: 1px solid #8894a0 !important;
+  background: #eef2f5 !important;
+  color: #29323c !important;
+}
+
+/* line 1605, /Users/trent.kan/footprints-public/app/assets/stylesheets/base.css.scss */
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+  border: 1px solid #21bd8b !important;
+  background: #21bd8b !important;
+  color: white !important;
+}
+/*! normalize.css v2.1.3 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+
+
+p, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+ul {
+  list-style: none;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9.
+ * Hide the `template` element in IE, Safari, and Firefox < 22.
+ */
+
+[hidden],
+template {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    font-family: sans-serif; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+
+a {
+    background: transparent;
+}
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre-wrap;
+}
+
+/**
+ * Set consistent quote types.
+ */
+
+q {
+    quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+
+img {
+    border: 0;
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0; /* 2 */
+}
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 2 */
+    margin: 0; /* 3 */
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
