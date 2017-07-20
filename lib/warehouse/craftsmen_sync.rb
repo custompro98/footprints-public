@@ -59,6 +59,7 @@ module Warehouse
     end
 
     def prepare_craftsman_attrs(attrs)
+      # TODO: XSS?
       {:name => "#{attrs[:person][:first_name]} #{attrs[:person][:last_name]}", :email => attrs[:person][:email], :employment_id => attrs[:id], :position => attrs[:position][:name]}
     end
 

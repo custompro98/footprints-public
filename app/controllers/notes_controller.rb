@@ -1,4 +1,7 @@
 class NotesController < ApplicationController
+
+  # TODO: explore application to see if authorization is needed here.
+
   def create
     note = Note.new(note_params)
 
@@ -6,6 +9,7 @@ class NotesController < ApplicationController
       note.update_attribute(:craftsman_id, craftsman.id)
     end
 
+    # TODO: I don't think we should be specifying the types of access levels we have. We should change this
     redirect_to applicant_path(note.applicant), :notice => ("Only craftsmen can leave notes." if craftsman.nil?)
   end
 
@@ -20,7 +24,7 @@ class NotesController < ApplicationController
     if craftsman.present?
       note.update_attributes(note_params)
     end
-
+    # TODO: Same here
     redirect_to applicant_path(note.applicant), :notice => ("Only craftsmen can edit notes." if craftsman.nil?)
   end
 

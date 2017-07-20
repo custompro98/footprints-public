@@ -52,6 +52,7 @@ class ApplicantOfferLetterGenerator
   end
 
   def placeholder_values
+    # TODO: some of these (especially the params) have potential for XSS
     [
       ["<TODAY'S DATE>", format_date(Date.today)],
       ["<APPLICANT NAME>", applicant.name],

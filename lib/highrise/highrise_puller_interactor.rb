@@ -3,6 +3,8 @@ require 'highrise'
 module Interactor
   class HighrisePuller
 
+    # TODO: lots of string interpolation... where do the puts go
+
     def initialize
       @repo = Footprints::Repository
       @last_six_months_applicants ||=  Highrise::Recording.find_all_across_pages_since(Time.now - 6.months).select { |r|

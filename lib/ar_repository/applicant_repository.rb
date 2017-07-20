@@ -35,7 +35,7 @@ module ArRepository
     def where(query_string, query)
       model_class.where(query_string, query)
     end
-
+    # TODO: sql injection!!
     def find_like(term)
       result = where("name like #{term}")
       result.empty? ? where("name like #{term}%") : result

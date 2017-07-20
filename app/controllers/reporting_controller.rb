@@ -7,6 +7,7 @@ class ReportingController < ApplicationController
     interactor = ReportingInteractor.new(session[:id_token])
     @reporting_data = interactor.fetch_projection_data(Date.today.month, Date.today.year)
   rescue ReportingInteractor::AuthenticationError => e
+    # TODO: should not reveal app specifics
     error_message = "You are not authorized through warehouse to use this feature"
 
     Rails.logger.error(error_message)

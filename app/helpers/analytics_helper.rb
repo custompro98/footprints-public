@@ -39,6 +39,7 @@ module AnalyticsHelper
   def display_background_info(field, value)
     percent = get_background_percentage(field, value)
     count = get_background_count(field, value)
+    # TODO: investigate XSS vulnerability?
     "#{percent} / #{count} applicants"
   end
 end
