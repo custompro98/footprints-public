@@ -8,8 +8,10 @@ log/
 config/omniauth-vals.txt
 config/mailer.yml
 config/database.yml
+config/application.yml
 coverage/
 db/footprints_test.db
+public/assets
 .ruby-version
 .ruby-gemset
 .sass-cache

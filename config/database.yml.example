@@ -1,23 +1,11 @@
 development:
-  adapter: mysql2
-  database: footprints
-  username:
-  password:
-  host: localhost
-  port: 9393
-
-local:
-  adapter: mysql2
-  database: footprints
-  username:
-  password:
-  host: localhost
-  port: 9393
+  adapter: postgresql
+  database: <db_name>
+  pool: 5
+  timeout: 5000
 
 test:
-  adapter: mysql2
-  database: footprints_test
-  username:
-  password:
-  host: localhost
-  port: 9393
+  adapter: postgresql
+  database: <db_name>
+  pool: 5
+  timeout: 5000

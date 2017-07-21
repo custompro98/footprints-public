@@ -2,7 +2,7 @@ require "active_record"
 require "safe_yaml"
 
 db_yaml = File.join(Rails.root, './config/database.yml')
-dbconfig = YAML.safe_load(File.open(db_yaml))
+dbconfig = YAML.safe_load(ERB.new(File.read(db_yaml)).result)
 
 ActiveRecord::Base.establish_connection(dbconfig[Rails.env])
 

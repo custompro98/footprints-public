@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140904131223) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "annual_starting_craftsman_salaries", force: true do |t|
     t.string "location", null: false
     t.float  "amount",   null: false
@@ -49,11 +52,11 @@ ActiveRecord::Schema.define(version: 20140904131223) do
     t.boolean  "archived",                 default: false
     t.date     "start_date"
     t.date     "end_date"
-    t.string   "mentor"
     t.date     "sent_challenge_on"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "offered_on"
+    t.string   "mentor"
   end
 
   add_index "applicants", ["craftsman_id"], name: "index_applicants_on_craftsman_id", using: :btree
@@ -74,12 +77,12 @@ ActiveRecord::Schema.define(version: 20140904131223) do
     t.integer "employment_id"
     t.string  "uid"
     t.string  "email"
-    t.string  "location",                    default: "Chicago"
-    t.boolean "archived",                    default: false
+    t.string  "location",          default: "Chicago"
+    t.boolean "archived",          default: false
     t.string  "position"
-    t.boolean "seeking",                     default: false
-    t.integer "skill",             limit: 1, default: 1,         null: false
-    t.boolean "has_apprentice",              default: false,     null: false
+    t.boolean "seeking",           default: false
+    t.integer "skill",             default: 1,         null: false
+    t.boolean "has_apprentice",    default: false,     null: false
     t.date    "unavailable_until"
   end
 

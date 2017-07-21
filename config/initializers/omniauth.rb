@@ -22,7 +22,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   else
     begin
       config      = Rails.root.join('config/omniauth.yml')
-      credentials = YAML.load_file(config)
+      credentials = YAML.load(ERB.new(File.read(config)).result)
       provider :google_oauth2, credentials[Rails.env]["client_id"], credentials[Rails.env]["client_secret"]
     rescue Exception => e
       puts "OmniAuth configuration failed."

@@ -13,7 +13,7 @@ class ConvertSkillOfCraftsmen < ActiveRecord::Migration
       craftsman.save!
     end
 
-    change_column :craftsmen, :skill, :tinyint, :default => 1, :null => false
+    change_column :craftsmen, :skill, 'integer USING CAST(skill as integer)', :default => 1, :null => false
   end
 
   def down
