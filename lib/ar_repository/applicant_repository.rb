@@ -37,8 +37,8 @@ module ArRepository
     end
 
     def find_like(term)
-      result = where("name like #{term}")
-      result.empty? ? where("name like #{term}%") : result
+      result = where("name like ?", term)
+      result.empty? ? where("name like ?", "#{term}%") : result
     end
 
     def get_all_archived_applicants
