@@ -1,5 +1,5 @@
 class ApplicantMailer < ActionMailer::Base
-  default :from => "noreply@footprints.com",
+  default :from => "noreply@abcinc.com",
           :reply_to => "brad@footprints.com"
 
   def email_applicant(applicant, email_body)
@@ -7,6 +7,6 @@ class ApplicantMailer < ActionMailer::Base
     mail(to: @applicant.email,
          body: email_body,
          content_type: "text/html",
-         subject: "Footprints Job")
+         subject: "ABC, Inc. Apprenticeship")
   end
 end

@@ -17,10 +17,6 @@ describe ApplicantMailer do
       expect(mail.from).to eq(['noreply@abcinc.com'])
     end
 
-    it "renders the bcc email" do
-      expect(mail.bcc).to eq(["dropbox@92013697.abcinc.highrisehq.com"])
-    end
-
     it "renders the body" do
       expect(mail.body).to eq("Email body")
     end
