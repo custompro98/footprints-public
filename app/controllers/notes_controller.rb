@@ -1,4 +1,7 @@
 class NotesController < ApplicationController
+
+  before_filter :authenticate, :craftsman?
+
   def create
     note = Note.new(note_params)
 

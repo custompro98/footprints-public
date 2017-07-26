@@ -22,8 +22,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def craftsman?
+    redirect_to(root_url, :notice => "You don't have permission to do this.") unless current_user.try(:craftsman_id)
+  end
+
   def employee?
-    redirect_to(oauth_signin_url, :notice => "You don't have permission to view this page.") unless current_user && current_user.employee?
+    redirect_to(oauth_signin_url, :notice => "You don't have permission to view this page.") unless current_user.try(:employee?)
   end
 
   def require_admin
