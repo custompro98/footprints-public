@@ -32,6 +32,7 @@ Footprints::Application.configure do
   # Request craftsmen from Warehouse
   config.prefetch_craftsmen = false
 
+  # TODO: Consider separate mailer creds per environment
   MAILER_CONFIG = YAML.load_file(Rails.root.join("config", "mailer.yml"))
   ENV['FOOTPRINTS_TEAM'] = "footprints@abcinc.com"
   ENV['STEWARD'] = MAILER_CONFIG['apprenticeship_steward']

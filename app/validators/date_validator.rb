@@ -20,6 +20,7 @@ class DateValidator < ActiveModel::Validator
       if record.send(field)
         date_fields[(index + 1)..-1].each do |later_field|
           if record.send(later_field)
+            # TODO: XSS
             record.errors.add(field.upcase, "can't be after #{stringify_field_name(later_field)}") if record.send(field) > record.send(later_field)
           end
         end

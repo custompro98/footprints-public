@@ -51,6 +51,7 @@ class SessionsController < ApplicationController
   end
 
   def display_authorization_message_and_log_exception(exception)
+    # TODO: change this message
     message = "You are not authorized to view this page. " +
       "Only ABC, Inc. craftsmen are authorized to view this page. " +
       "If you are one, please contact us."

@@ -16,6 +16,7 @@ require 'will_paginate/array'
 class ApplicantsController < ApplicationController
   include ApplicantsHelper
 
+  # TODO: We should authenticate here including on :submit
   before_filter :authenticate, :employee?, :except => [:submit]
   before_filter :require_admin, :only => [:destroy, :new, :create, :hire, :make_decision, :unassigned, :assign_craftsman]
 
@@ -31,6 +32,7 @@ class ApplicantsController < ApplicationController
   def create
     @applicant = repo.applicant.new(applicant_params)
     @applicant.save!
+    # TODO: XSS?
     redirect_to(applicant_path(@applicant), :notice => "Successfully created #{@applicant.name}")
   rescue StandardError => e
     flash.now[:error] = [e.message]
@@ -133,6 +135,7 @@ class ApplicantsController < ApplicationController
     applicant = repo.applicant.find_by_id(params[:id])
     steward = repo.craftsman.find_by_email(ENV['STEWARD'])
     ApplicantDispatch::Dispatcher.new(applicant, steward).assign_applicant
+    # TODO: XSS?
     redirect_to(unassigned_applicants_path, notice: "Assigned #{applicant.name} to #{applicant.assigned_craftsman}")
   end
 

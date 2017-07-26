@@ -15,11 +15,12 @@ class ApprenticesController < ApplicationController
       @residents = ApprenticeListPresenter.new(raw_residents).residents
       @students = StudentListPresenter.new(raw_students).students
     rescue ApprenticesInteractor::AuthenticationError => e
+      # TODO: This message seems too specific... We shouldn't reveal what is used to build our application to the user
       error_message = "You are not authorized through warehouse to use this feature"
       Rails.logger.error(e.message)
       Rails.logger.error(e.backtrace)
       redirect_to root_path, :flash => { :error => [error_message] }
-    end  
+    end
   end
 
   def edit
@@ -58,6 +59,6 @@ class ApprenticesController < ApplicationController
   end
 
   def next_monday(date)
-    date.next_week.at_beginning_of_week 
+    date.next_week.at_beginning_of_week
   end
 end

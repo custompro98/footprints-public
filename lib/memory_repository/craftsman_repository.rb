@@ -12,6 +12,7 @@ module MemoryRepository
 
     def create(attrs = {})
       craftsman = new(attrs)
+      # TODO: secure comp to not guess craftsmen ids?
       if !exisiting_employment_id?(craftsman.employment_id) && craftsman.valid?
         save(craftsman)
       else

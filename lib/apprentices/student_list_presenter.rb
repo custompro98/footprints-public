@@ -38,7 +38,7 @@ class StudentListPresenter
     end
 
     def mentor_names
-      raw_apprenticeship[:mentorships].map { |mentorship| 
+      raw_apprenticeship[:mentorships].map { |mentorship|
         name(mentorship[:person])
       }.to_sentence
     end

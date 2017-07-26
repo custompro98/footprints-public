@@ -16,6 +16,8 @@ ENV.update YAML.load_file('config/application.yml')
 
 module Footprints
   class Application < Rails::Application
+
+    # TODO: Some things in here are already configured..
     MAILER_CONFIG = YAML.load_file(Rails.root.join("config", "mailer.yml"))
     # add custom validators path
     config.autoload_paths += %W["#{config.root}/app/validators/"]

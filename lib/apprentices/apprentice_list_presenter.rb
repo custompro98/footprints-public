@@ -16,6 +16,7 @@ class ApprenticeListPresenter
       @data = data
     end
 
+    # TODO: XSS
     def name
       "#{first_name} #{last_name}"
     end

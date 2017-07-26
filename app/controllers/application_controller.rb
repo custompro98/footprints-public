@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # TODO: Checking email substrings is a bad idea. Use the attribute on the model instead
   def employee?
     redirect_to(oauth_signin_url, :notice => "You don't have permission to view this page.") unless current_user && current_user.employee?
   end
@@ -41,6 +42,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # TODO: I would think we could leverage this for logging
   def is_ajax_request
     request.headers["X-Requested-With"] == "XMLHttpRequest"
   end
