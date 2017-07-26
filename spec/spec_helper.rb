@@ -4,8 +4,8 @@ SimpleCov.start 'rails'
 
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
 
+require 'rspec/rails'
 require './lib/ar_repository/ar_repository'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
