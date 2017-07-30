@@ -20,6 +20,7 @@ gem "httparty", '~> 0.13.0'
 gem "american_date"
 gem 'pg'
 gem 'rails-observers', '0.1.2'
+gem 'rack-attack'
 
 gem 'warehouse', git: 'https://github.com/ryanzverner/stockroom-ruby-client.git'
 

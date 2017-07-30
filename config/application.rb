@@ -24,6 +24,7 @@ module Footprints
     config.force_ssl = false
     config.assets_enabled = true
     config.encoding = "utf-8"
+    config.middleware.use Rack::Attack
 
     if Rails.env.production?
       host = "footprints.abcinc.com"

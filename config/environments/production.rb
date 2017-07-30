@@ -32,9 +32,10 @@ Footprints::Application.configure do
   # Request craftsmen from Warehouse
   config.prefetch_craftsmen = false
 
-  MAILER_CONFIG = YAML.load_file(Rails.root.join("config", "mailer.yml"))
+  # Rack attack set up
+  config.middleware.use Rack::Attack
+
   ENV['FOOTPRINTS_TEAM'] = "footprints@abcinc.com"
-  ENV['STEWARD'] = MAILER_CONFIG['apprenticeship_steward']
   ENV['ADMIN_EMAIL'] = "footprints@abcinc.com"
   ENV['APPLICANTS_REVIEWER'] = "footprints@abcinc.com"
   ENV['warehouse-host'] = "https://warehouse-staging.abcinc.com"
