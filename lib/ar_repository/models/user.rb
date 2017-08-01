@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
 
     user = User.new
     user.email = user.login = email
-    # user.uid = hash['uid']
     user.provider = hash['provider']
     user.save!
     user

@@ -24,10 +24,6 @@ module MemoryRepository
       records.values.find { |r| r.id == id }
     end
 
-    # def find_by_uid(uid)
-    #   records.values.find { |r| r.uid == uid }
-    # end
-
     def find_by_login(login)
       records.values.find { |r| r.login == login }
     end
