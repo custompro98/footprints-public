@@ -30,7 +30,6 @@ describe SessionsController do
       get :create
 
       user = User.first
-      expect(user.uid).to      eq('123')
       expect(user.email).to    eq("test@test.com")
       expect(user.provider).to eq('google_oauth2')
     end
