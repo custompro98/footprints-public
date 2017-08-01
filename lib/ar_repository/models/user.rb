@@ -14,13 +14,14 @@ class User < ActiveRecord::Base
   private
 
   def self.find_or_create_by_auth_hash(hash)
-    if user = User.find_by_uid(hash['uid'])
+    email = hash['info']['email']
+    if user = User.find_by_email(email)
       return user
     end
 
     user = User.new
-    user.email = user.login = hash['info']['email']
-    user.uid = hash['uid']
+    user.email = user.login = email
+    # user.uid = hash['uid']
     user.provider = hash['provider']
     user.save!
     user

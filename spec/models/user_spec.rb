@@ -14,19 +14,18 @@ describe User do
 
   it "returns an existing user if one already exists" do
     user = User.new
-    User.should_receive(:find_by_uid).and_return user
+    User.should_receive(:find_by_email).and_return user
     User.should_not_receive :save
 
     User.find_or_create_by_auth_hash(auth_hash).should == user
   end
 
   it "sets the attributes and saves if no existing email" do
-    User.stub(:find_by_uid)
+    User.stub(:find_by_email)
     User.find_or_create_by_auth_hash(auth_hash)
     user = User.last
     user.email.should == auth_hash['info']['email']
     user.provider.should == auth_hash['provider']
-    user.uid.should == auth_hash['uid']
   end
 
   it "if user login doesn't match a craftsman email it doesn't assign user id" do

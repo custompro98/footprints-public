@@ -24,21 +24,22 @@ module MemoryRepository
       records.values.find { |r| r.id == id }
     end
 
-    def find_by_uid(uid)
-      records.values.find { |r| r.uid == uid }
-    end
+    # def find_by_uid(uid)
+    #   records.values.find { |r| r.uid == uid }
+    # end
 
     def find_by_login(login)
       records.values.find { |r| r.login == login }
     end
 
     def find_or_create_by_auth_hash(hash)
-      if user = self.find_by_uid(hash['uid'])
+      email = hash['info']['email']
+      if user = self.find_by_email(email)
         return user
       end
 
       user = MemoryRepository::User.new
-      user.email = user.login = hash['info']['email']
+      user.email = user.login = email
       user.uid = hash['uid']
       user.provider = hash['provider']
       save(user)

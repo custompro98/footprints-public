@@ -8,9 +8,8 @@ shared_examples "user repository" do
 
   let(:auth_hash) {{
     'provider' => 'google_oauth2',
-    'uid' => '123456',
     'info' => {
-      'email' => 'test@user.com'
+      'email' => 'test1@user.com'
     }}}
 
   before do
@@ -32,11 +31,6 @@ shared_examples "user repository" do
 
   it "finds by id" do
     repo.find_by_id(user.id).should == user
-  end
-
-  it "finds by uid" do
-    test_applicant = repo.find_or_create_by_auth_hash(auth_hash)
-    repo.find_by_uid(test_applicant.uid).should == test_applicant
   end
 
   it "finds by email" do

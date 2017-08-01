@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    if !current_user || current_user.uid == nil
+    if !current_user
       session[:return_to] = request.url
       redirect_request
     end
