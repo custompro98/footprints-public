@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801025520) do
+ActiveRecord::Schema.define(version: 20170802190612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 20170801025520) do
     t.boolean "has_apprentice",    default: false,     null: false
     t.date    "unavailable_until"
   end
+
+  add_index "craftsmen", ["employment_id"], name: "index_craftsmen_on_employment_id", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false

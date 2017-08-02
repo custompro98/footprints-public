@@ -1,4 +1,5 @@
 require 'simplecov'
+require 'database_cleaner'
 
 SimpleCov.start 'rails'
 
@@ -10,6 +11,8 @@ require './lib/ar_repository/ar_repository'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+DatabaseCleaner.strategy = :transaction
+
 RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = true
@@ -17,7 +20,13 @@ RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   #config.profile_examples = true # uncomment if profiling is necessary
 
-  config.before(:all) { Footprints::Repository.craftsman.destroy_all; Footprints::Repository.applicant.destroy_all; Footprints::Repository.assigned_craftsman_record.destroy_all }
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
 
 OmniAuth.config.test_mode = true

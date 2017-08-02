@@ -7,11 +7,15 @@ describe ApplicantDispatch::Dispatcher do
   applicant_factory = SpecHelpers::ApplicantFactory.new
   craftsman_factory = SpecHelpers::CraftsmanFactory.new
 
+  before(:each) do
+    ::Footprints::Repository.craftsman.destroy_all
+  end
+
   let(:resident_skill) { Skills.get_key_for_skill('Resident') }
 
-  let!(:steward) { 
-    craftsman_factory.create(:name => "Steward Sterlington", 
-                             :email => "johndoe@example.com", 
+  let!(:steward) {
+    craftsman_factory.create(:name => "Steward Sterlington",
+                             :email => "johndoe@example.com",
                              :employment_id => 777)
   }
 
@@ -22,9 +26,9 @@ describe ApplicantDispatch::Dispatcher do
   }
 
   let!(:craftsman) {
-    craftsman_factory.create(seeking: true, 
-                             skill: resident_skill, 
-                             location: "Chicago", 
+    craftsman_factory.create(seeking: true,
+                             skill: resident_skill,
+                             location: "Chicago",
                              position: "Software Craftsman")
   }
 

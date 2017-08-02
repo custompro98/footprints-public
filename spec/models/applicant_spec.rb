@@ -11,12 +11,12 @@ describe Applicant do
       :applied_on => yesterday,
       :discipline => "developer",
       :skill => "resident",
-      :location => "Chicago"
+      :location => "Chicago",
     }
   end
 
   let(:message)    { Message.new(:title => "Title", :body => "Body", :created_at => Date.today) }
-  let!(:craftsman) { Craftsman.create(:name => "A Craftsman", :email => "acraftsman@abcinc.com", :employment_id => "1234") }
+  let!(:craftsman) { Craftsman.create!(:name => "A Craftsman", :email => "acraftsman@abcinc.com", :employment_id => "1234") }
 
   it "has available code schools" do
     Applicant.code_schools.should_not be_empty
@@ -25,17 +25,13 @@ describe Applicant do
   context "validation" do
     let(:applicant) { Footprints::Repository.applicant.create(attrs) }
 
-    after :each do
-      Craftsman.destroy_all
-    end
-
     it "requires a name, applied on date, and valid email" do
       applicant.should be_valid
     end
 
     it "saves assigned craftsman if craftsman exists" do
-      applicant.update_attributes(:assigned_craftsman => "A Craftsman", :craftsman_id => craftsman.id)
-      applicant.craftsman_id.should == craftsman.id
+      applicant.update_attributes(:assigned_craftsman => "A Craftsman", :craftsman_id => craftsman.employment_id)
+      applicant.craftsman_id.should == craftsman.employment_id
     end
 
     it "does not save assigned craftsman if craftsman does not exist" do
