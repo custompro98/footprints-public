@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'applicant_dispatch/strategies/filter_strategy'
 
 module ApplicantDispatch
@@ -16,7 +17,7 @@ module ApplicantDispatch
         two = double(:craftsman_two)
         three = double(:craftsman_three)
 
-        expect { |b| 
+        expect { |b|
           subject.call([one, two, three], double(:applicant), &b)
         }.to yield_with_args([one, two])
       end

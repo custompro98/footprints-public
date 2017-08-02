@@ -1,9 +1,10 @@
+require 'spec_helper'
 require 'applicant_dispatch/find_best_applicant_reviewer'
 
 module TestStrategies
   class OnlyApplicantsInChicago
     def call(candidates, applicant)
-      chicago_candidates = candidates.reject do |candidate| 
+      chicago_candidates = candidates.reject do |candidate|
         candidate.location != "Chicago"
       end
 
@@ -66,7 +67,7 @@ module ApplicantDispatch
       subject.call(
         strategies: strategies,
         candidates: [
-          chicago_candidate_one, 
+          chicago_candidate_one,
           chicago_candidate_two,
           london_candidate
         ])
@@ -79,21 +80,21 @@ module ApplicantDispatch
     end
 
     it "enables short-circuiting of the filtering process" do
-      best_candidate = get_best_candidate(TestStrategies::AlwaysChooseFirstLondonCandidate.new, 
+      best_candidate = get_best_candidate(TestStrategies::AlwaysChooseFirstLondonCandidate.new,
                                           TestStrategies::BlowUp.new)
 
       expect(best_candidate).to eq(london_candidate)
     end
 
     it "chooses the fallback option if the strategies return no possibilites" do
-      best_candidate = get_best_candidate(TestStrategies::DontAllowAnyone.new, 
+      best_candidate = get_best_candidate(TestStrategies::DontAllowAnyone.new,
                                           TestStrategies::OnlyApplicantsInChicago.new)
 
       expect(best_candidate).to eq(fallback)
     end
 
     it "does not evaluate any more strategies if there are no possible candidates" do
-      best_candidate = get_best_candidate(TestStrategies::DontAllowAnyone.new, 
+      best_candidate = get_best_candidate(TestStrategies::DontAllowAnyone.new,
                                           TestStrategies::BlowUp.new)
 
       expect(best_candidate).to eq(fallback)

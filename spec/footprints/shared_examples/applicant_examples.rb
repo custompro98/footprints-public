@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 shared_examples "applicant repository" do
   let(:yesterday) { Date.yesterday }
   let(:today) { Date.today }
@@ -101,13 +103,13 @@ shared_examples "applicant repository" do
 
 
   context "filter applicants" do
-    let!(:applied_on_applicant) { create_applicant } 
-    let!(:initial_reply_on_applicant) { create_applicant(initial_reply_on: Date.today) } 
+    let!(:applied_on_applicant) { create_applicant }
+    let!(:initial_reply_on_applicant) { create_applicant(initial_reply_on: Date.today) }
     let!(:sent_challenge_on_applicant) { create_applicant(sent_challenge_on: Date.today) }
-    let!(:completed_challenge_on_applicant) { create_applicant(completed_challenge_on: Date.today) } 
-    let!(:reviewed_on_applicant) { create_applicant(reviewed_on: Date.today) } 
-    let!(:offered_on_applicant) { create_applicant(offered_on: Date.today) } 
-    let!(:decision_made_on_applicant) { create_applicant(decision_made_on: Date.today) } 
+    let!(:completed_challenge_on_applicant) { create_applicant(completed_challenge_on: Date.today) }
+    let!(:reviewed_on_applicant) { create_applicant(reviewed_on: Date.today) }
+    let!(:offered_on_applicant) { create_applicant(offered_on: Date.today) }
+    let!(:decision_made_on_applicant) { create_applicant(decision_made_on: Date.today) }
 
     it "finds applied_on applicants" do
       expect(repo.get_applicants_by_state('applied_on')).to eq [applied_on_applicant]
@@ -135,13 +137,13 @@ shared_examples "applicant repository" do
   end
 
   it 'gets all archived' do
-     archived = create_applicant(:archived => true) 
+     archived = create_applicant(:archived => true)
      unarchived = create_applicant
      expect(repo.get_all_archived_applicants).to eq [archived]
   end
 
   it 'gets all unarchived' do
-     archived = create_applicant(:archived => true) 
+     archived = create_applicant(:archived => true)
      unarchived = create_applicant
      expect(repo.get_all_unarchived_applicants).to eq [unarchived]
   end

@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'apprentices/student_list_presenter'
 require 'warehouse/fake_api'
 

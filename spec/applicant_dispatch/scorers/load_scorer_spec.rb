@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'applicant_dispatch/strategies/scoring_strategy'
 require 'applicant_dispatch/util/scoreable_entity'
 
@@ -10,7 +11,7 @@ module ApplicantDispatch
         WEIGHT[:each_assigned_applicant]
       }
 
-      let(:candidate_one) { 
+      let(:candidate_one) {
         ScoreableEntity.new(double(:candidate_one,
                                    :number_of_current_assigned_applicants => 10))
       }
@@ -19,7 +20,7 @@ module ApplicantDispatch
         ScoreableEntity.new(double(:candidate_two,
                                    :number_of_current_assigned_applicants => 2))
       }
-                                  
+
       it "decreases a candidates score in relation to the amount of current assigned applicants" do
         subject.call([candidate_one, candidate_two], double(:applicant))
 
