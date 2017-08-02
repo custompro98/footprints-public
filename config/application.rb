@@ -24,7 +24,9 @@ module Footprints
     config.autoload_paths += %W["#{config.root}/app/validators/"]
     config.autoload_paths += %W["#{config.root}/lib"]
     config.time_zone = 'Central Time (US & Canada)'
-    config.force_ssl = false
+
+    config.force_ssl = Rails.env.production?
+
     config.assets_enabled = true
     config.encoding = "utf-8"
 
