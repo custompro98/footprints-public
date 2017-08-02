@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 shared_examples "user repository" do
   let(:repo) { described_class.new }
   let(:attrs) {{

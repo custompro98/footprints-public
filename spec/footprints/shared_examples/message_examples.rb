@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 shared_examples "message repository" do
   let(:repo) { described_class.new }
   let(:applicant) { Footprints::Repository.applicant.create(:name => "Applicant", :applied_on => Date.today, :email => "email@email.com",

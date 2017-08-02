@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 shared_examples "monthly apprentice salary" do
   let(:repo) { described_class.new }
 

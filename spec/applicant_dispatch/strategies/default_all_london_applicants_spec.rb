@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'applicant_dispatch/strategies/default_all_london_applicants'
 
 module ApplicantDispatch

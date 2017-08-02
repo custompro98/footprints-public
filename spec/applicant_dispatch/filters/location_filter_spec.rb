@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'applicant_dispatch/strategies/filter_strategy'
 
 describe "ApplicantDispatch::Filters::LocationFilter" do

@@ -1,13 +1,14 @@
+require 'spec_helper'
 require 'applicant_dispatch/strategies/filter_strategy'
 
 describe "ApplicantDispatch::Filters::DisciplineFilter" do
   subject { ApplicantDispatch::Filters::DisciplineFilter }
 
-  let(:software_craftsman) { 
+  let(:software_craftsman) {
     double(:position => "Software Craftsman")
   }
 
-  let(:chicago_designer) { 
+  let(:chicago_designer) {
     double(:position => "Not a Software Craftsman")
   }
 
@@ -15,7 +16,7 @@ describe "ApplicantDispatch::Filters::DisciplineFilter" do
     double(:position => nil)
   }
 
-  let(:craftsmen) { 
+  let(:craftsmen) {
     [chicago_designer, software_craftsman, reviewer_with_unknown_position]
   }
 

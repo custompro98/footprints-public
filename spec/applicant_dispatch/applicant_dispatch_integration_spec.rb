@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'applicant_dispatch/dispatcher'
 require 'spec_helpers/applicant_factory'
 require 'spec_helpers/craftsman_factory'
