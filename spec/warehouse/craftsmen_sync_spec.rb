@@ -51,7 +51,7 @@ describe Warehouse::CraftsmenSync do
   end
 
   it "associates footprints craftsman to their footprints user" do
-    repo.user.create(:email => "tflenderson@dundermifflin.com", :uid => "007")
+    repo.user.create(:email => "tflenderson@dundermifflin.com")
     allow(api).to receive(:current_craftsmen) { [toby] }
     craftsmen_sync.sync
     craftsman_toby = repo.craftsman.first
