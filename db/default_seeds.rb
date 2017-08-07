@@ -275,7 +275,6 @@ module DefaultSeed
 
       new_user = Footprints::Repository.user.create({
         :login => "you@abcinc.com",
-        :uid   => "107478018817920458918",
         :provider => "google_oauth2",
         :email => "you@abcinc.com",
         :admin => true
