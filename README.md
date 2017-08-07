@@ -1,5 +1,8 @@
 Footprints
 
+### Status
+[![Build Status](https://travis-ci.org/FootprintsAdmin/footprints-public.svg?branch=master)](https://travis-ci.org/FootprintsAdmin/footprints-public)
+
 `rails server` to start it locally
 
 Running Footprints:
