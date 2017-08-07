@@ -6,7 +6,7 @@ describe NotesController do
                                           :discipline => "developer", :skill => "resident", :location => "Chicago") }
   let(:craftsman_id) { 1 }
   let(:craftsman) { double(:craftsman, :id => craftsman_id) }
-  let(:mock_user) { double(::User, craftsman_id: craftsman_id, uid: 1, craftsman: craftsman)}
+  let(:mock_user) { double(::User, craftsman_id: craftsman_id, craftsman: craftsman)}
 
   before :each do
     repo.notes.destroy_all
