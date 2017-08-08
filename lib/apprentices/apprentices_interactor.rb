@@ -84,7 +84,7 @@ class ApprenticesInteractor
   def current?(employment)
     employment[:start] <= Date.current && (employment[:end].nil? || employment[:end] > Date.today)
   end
-  
+
   def corresponding_craftsman?(resident, employment)
     true if (resident[:person][:id] == employment[:person][:id]) && craftsman?(employment)
   end
