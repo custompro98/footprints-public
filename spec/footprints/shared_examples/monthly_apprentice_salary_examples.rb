@@ -49,6 +49,6 @@ shared_examples "monthly apprentice salary" do
     create_salary(salary1)
     create_salary(salary2)
     create_salary(salary3)
-    expect(repo.find_all_durations_by_location("Chicago")).to eq([6,7,8])
+    expect(repo.find_all_durations_by_location("Chicago")).to match_array([6,7,8])
   end
 end
