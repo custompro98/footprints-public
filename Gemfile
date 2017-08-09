@@ -39,7 +39,10 @@ group :test, :development do
   gem "better_errors", '1.1.0'
 end
 
-gem 'simplecov', :require => false, :group => :test
+group :test do
+  gem 'database_cleaner'
+  gem 'simplecov', :require => false
+end
 
 group :production do
   gem 'unicorn', '~> 4.8.2'
