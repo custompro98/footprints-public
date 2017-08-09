@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802190612) do
+ActiveRecord::Schema.define(version: 20170809213454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20170802190612) do
     t.string   "assigned_craftsman"
     t.string   "code_submission"
     t.text     "additional_notes"
-    t.integer  "craftsman_id"
     t.text     "about"
     t.text     "software_interest"
     t.text     "reason"
@@ -59,7 +58,6 @@ ActiveRecord::Schema.define(version: 20170802190612) do
     t.string   "mentor"
   end
 
-  add_index "applicants", ["craftsman_id"], name: "index_applicants_on_craftsman_id", using: :btree
   add_index "applicants", ["name"], name: "index_applicants_on_name", using: :btree
   add_index "applicants", ["slug"], name: "index_applicants_on_slug", unique: true, using: :btree
 

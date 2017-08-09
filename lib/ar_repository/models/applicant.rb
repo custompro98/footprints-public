@@ -14,7 +14,6 @@ class Applicant < ActiveRecord::Base
   has_many :notes
   has_many :assigned_craftsman_records, autosave: true
   has_many :notifications
-  belongs_to :craftsman
 
   validates_with DateValidator
   validates_with UrlValidator
@@ -66,25 +65,13 @@ class Applicant < ActiveRecord::Base
     craftsman_name = self.assigned_craftsman
     if craftsman_name.blank?
       set_no_craftsman
-    else
-      set_craftsman_by_name(craftsman_name)
     end
     self
   end
 
   def set_no_craftsman
     self.assigned_craftsman = nil
-    self.craftsman_id = nil
     self.has_steward = false
-  end
-
-  def set_craftsman_by_name(craftsman_name)
-    craftsman = Footprints::Repository.craftsman.find_by_name(craftsman_name)
-    if craftsman
-      self.craftsman_id = craftsman.id
-    else
-      self.craftsman_id = nil
-    end
   end
 
   def first_name
