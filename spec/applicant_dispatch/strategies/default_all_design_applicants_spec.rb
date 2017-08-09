@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'applicant_dispatch/strategies/default_all_design_applicants'
 
 module ApplicantDispatch
@@ -35,7 +36,7 @@ module ApplicantDispatch
 
         candidates = [london_candidate, chicago_candidate, lead_designer]
 
-        expect { |b| 
+        expect { |b|
           subject.call(candidates, applicant, &b)
         }.to yield_with_args(candidates)
       end

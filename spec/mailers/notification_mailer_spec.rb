@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe NotificationMailer do
   let(:applicant) { mock_model Applicant, name: "Applicant", skill: 'skill', first_name: "App", email: 'test@test.com', applied_on: Date.today }

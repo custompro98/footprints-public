@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'spec_helpers/craftsman_factory'
 
 require './lib/craftsmen/craftsmen_interactor'

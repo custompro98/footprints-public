@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'slim_spec_helper'
 require 'applicants/applicant_state_machine'
 require 'ostruct'
@@ -23,7 +24,7 @@ describe ApplicantStateMachine do
                                                 :sent_challenge_on => Date.today, :completed_challenge_on => Date.today,
                                                 :reviewed_on => Date.today, :offered_on => Date.today)}
 
-  let!(:decision_made_on_applicant) { OpenStruct.new( :applied_on => Date.today, :initial_reply_on => Date.today, 
+  let!(:decision_made_on_applicant) { OpenStruct.new( :applied_on => Date.today, :initial_reply_on => Date.today,
                                                       :sent_challenge_on => Date.today, :completed_challenge_on => Date.today,
                                                       :reviewed_on => Date.today, :resubmitted_challenge_on => Date.today,
                                                       :offered_on => Date.today, :decision_made_on => Date.today )}

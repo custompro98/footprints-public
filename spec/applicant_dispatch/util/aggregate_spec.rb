@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'applicant_dispatch/util/aggregate'
 
 module TestFilters
