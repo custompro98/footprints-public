@@ -1,3 +1,4 @@
+require 'spec_helper'
 require_relative 'spec_helpers/employment_factory'
 require_relative 'spec_helpers/test_cache'
 require 'warehouse/api_wrapper'

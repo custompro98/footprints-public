@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 shared_examples "craftsman repository" do
   let(:repo) { described_class.new }
   let(:attrs) {{

@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 shared_examples "note repository" do
   let(:repo) { described_class.new }
   let(:applicant) { Applicant.create(:name => "A Applicant",

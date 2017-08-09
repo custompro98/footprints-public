@@ -1,4 +1,5 @@
 require 'ostruct'
+require 'spec_helper'
 require 'applicant_dispatch/strategies/scoring_strategy'
 require 'applicant_dispatch/util/scoreable_entity'
 

@@ -1,5 +1,5 @@
-require "spec_helper"
-require "./lib/craftsmen/craftsmen_presenter"
+require 'spec_helper'
+require './lib/craftsmen/craftsmen_presenter'
 require './lib/craftsmen/skills'
 
 describe CraftsmenPresenter do

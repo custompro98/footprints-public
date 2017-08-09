@@ -9,7 +9,7 @@ describe Footprints::Reminder do
   let!(:steward) { Craftsman.create(:name => "Test Steward", :email => ENV["STEWARD"], :employment_id => 777) }
 
 
-  before :all do
+  before :each do
     Craftsman.create(:name => "A. Craftsman", :email => "acraftsman@abcinc.com", :employment_id => "1234")
   end
 

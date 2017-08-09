@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 require './lib/craftsmen/skills'
 
 describe Skills do

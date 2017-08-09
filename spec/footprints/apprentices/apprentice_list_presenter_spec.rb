@@ -1,13 +1,14 @@
+require 'spec_helper'
 require 'apprentices/apprentice_list_presenter'
 
 describe ApprenticeListPresenter do
   let(:created_at) { DateTime.new }
   let(:updated_at) { DateTime.new }
   let(:resident) {{:position=> {:created_at => created_at,
-                                :id => 15, 
-                                :name => "Software Resident", 
+                                :id => 15,
+                                :name => "Software Resident",
                                 :updated_at => updated_at},
-                   :person=> {:created_at=>"2014-01-01 08:50:00 UTC",                              
+                   :person=> {:created_at=>"2014-01-01 08:50:00 UTC",
                               :id=>115,
                               :first_name=>"F",
                               :last_name=>"Resident",

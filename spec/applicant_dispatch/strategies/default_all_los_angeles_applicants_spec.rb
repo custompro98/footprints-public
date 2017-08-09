@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'applicant_dispatch/strategies/default_all_los_angeles_applicants'
 
 module ApplicantDispatch
