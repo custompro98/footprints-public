@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe ApplicantsController do
+  let(:params) { {} }
   let(:applicant)            { Footprints::Repository.applicant.new }
   let(:repo)                 { Footprints::Repository }
   let(:applied_date)         { Date.today - 7.days }
@@ -9,10 +10,10 @@ describe ApplicantsController do
   let(:reviewed_date)        { Date.today - 4.days }
   let(:resubmitted_ttt_date) { Date.today - 3.days }
   let(:decision_made_date)   { Date.today - 2.days }
-  let(:first_applicant)  { repo.applicant.create(:name => "First", :applied_on => applied_date,
-                                                :discipline => "developer", :skill => "resident", :location => "Chicago") }
-  let(:second_applicant) { repo.applicant.create(:name => "Second", :applied_on => applied_date, :initial_reply_on => initial_reply_date,
-                                                 :discipline => "developer", :skill => "resident", :location => "Chicago") }
+  let(:first_applicant)  { {:name => "First", :applied_on => applied_date,
+                           :discipline => "developer", :skill => "resident", :location => "Chicago" }}
+  let(:second_applicant) { {:name => "Second", :applied_on => applied_date, :initial_reply_on => initial_reply_date,
+                           :discipline => "developer", :skill => "resident", :location => "Chicago" }}
 
   let(:third_applicant) { repo.applicant.create(:name => "Third", :applied_on => applied_date, :initial_reply_on => initial_reply_date,
                                                 :completed_challenge_on => completed_ttt_date, :discipline => "developer", :skill => "resident",
@@ -54,87 +55,116 @@ describe ApplicantsController do
   end
 
   before :each do
-    repo.applicant.destroy_all
-    repo.craftsman.destroy_all
     controller.stub(:authenticate)
     controller.stub(:employee?)
   end
 
-  context ":index" do
-    it "assigns applicants" do
-      applicants = [first_applicant, second_applicant]
-      allow(applicants).to receive(:paginate) { applicants }
-      allow(repo.applicant).to receive(:get_applicants) { applicants }
-      get :index, { "status" => "test filter" }
-      expect(assigns(:applicants)).to eq([first_applicant, second_applicant])
+  shared_examples 'protected route' do
+    context 'as an admin' do
+      it 'grants access' do
+         login_as_admin
+          get route, params
+          expect(response.status).to eq(200)
+      end
+    end
+
+    context 'as a non admin' do
+      it 'denies access' do
+        login_as_non_admin
+        get route, params
+        expect(response.status).to eq(302)
+      end
     end
   end
 
-  context ":new" do
-    it "assigns applicant to new instance of Applicant" do
-      login_as_admin
-      get :new
-      expect(assigns(:applicant)).to be_a_new(Applicant)
-    end
+  describe '#new' do
+    let(:route) { :new }
 
-    it "only allows admins to access the new applicant page" do
-      login_as_non_admin
-      get :new
-      expect(response).to redirect_to(root_path)
+    it_behaves_like 'protected route'
+  end
+
+  describe '#create' do
+    let(:route) { :create }
+
+    it_behaves_like 'protected route'
+
+    context 'as an admin' do
+      before do
+        login_as_admin
+      end
+
+      it "creates a new record" do
+        attrs = { 'applicant' => { name: 'Bar',
+                                   applied_on: "01/01/2014",
+                                   about: "about",
+                                   software_interest: "software_interest",
+                                   reason: "reason",
+                                   discipline: "developer",
+                                   skill: "resident",
+                                   location: "Chicago" }}
+
+        post route, attrs
+        app = repo.applicant.find_by_name("Bar")
+        expect(app.applied_on.to_s).to eq("2014-01-01")
+        expect(response).to redirect_to(applicant_path(assigns(:applicant)))
+      end
+
+      it "doesnt create a new record with invalid params" do
+        attrs = { 'applicant' => { name: "Bar",
+                                   applied_on: "" ,
+                                   initial_reply_on: "",
+                                   completed_challenge_on: "",
+                                   reviewed_on: "",
+                                   resubmitted_challenge_on: "",
+                                   decision_made_on: "",
+                                   start_date: "",
+                                   end_date: "",
+                                   discipline: "developer",
+                                   skill: "resident",
+                                   location: "Chicago" }}
+
+        post route, attrs
+        expect(response).to render_template :new
+      end
     end
   end
 
-  context ":create" do
-    it "allows admins to create a new record" do
-      login_as_admin
-      attrs = { "applicant" => {  :name => "Bar", :applied_on => "01/01/2014", :about => "about", :software_interest => "software_interest", :reason => "reason", :discipline => "developer", :skill => "resident", :location => "Chicago"}}
-      post :create, attrs
-      app = repo.applicant.find_by_name("Bar")
-      expect(app.applied_on.to_s).to eq("2014-01-01")
+  context '#show' do
+    let(:route) { :show }
+    let(:params) { {id: test_app.id} }
+
+    let(:test_app) do
+      repo.applicant.create(name: 'Test',
+                            applied_on: Date.today,
+                            discipline: 'developer',
+                            skill: 'resident',
+                            location: 'Chicago')
     end
 
-    it "redirects to applicant profile after creation" do
-      login_as_admin
-      attrs = { "applicant" => {  :name => "Bar", :applied_on => "01/01/2014", :discipline => "developer", :skill => "resident", :location => "Chicago" }}
-      post :create, attrs
-      expect(response).to redirect_to(applicant_path(assigns(:applicant)))
-    end
-
-    it "doesnt create a new record with invalid params" do
-      login_as_admin
-      attrs = { "applicant" => {:name => "Bar", :applied_on => "" ,  :initial_reply_on => "", :completed_challenge_on => "" , :reviewed_on => "", :resubmitted_challenge_on => "", :decision_made_on => "", :start_date => "", :end_date => "", :discipline => "developer", :skill => "resident", :location => "Chicago"}}
-      post :create, attrs
-      expect(response).to render_template :new
-    end
-
-    it "doesn't allow a non-admin to create a new applicant" do
-      login_as_non_admin
-      attrs = { "applicant" => {  :name => "Bar", :applied_on => "01/01/2014", :discipline => "developer", :skill => "resident", :location => "Chicago" }}
-      expect{ post :create, attrs }.to_not change(repo.applicant.model_class, :count)
-    end
-  end
-
-  context ":show" do
-    it "has applicant profile" do
-      test_app = repo.applicant.create(:name => "Test", :applied_on => Date.today, :discipline => "developer", :skill => "resident", :location => "Chicago")
-      params = { :id => test_app.id }
-      get :show, params
+    it 'has applicant profile' do
+      get route, params
       expect(assigns[:applicant]).to eq(test_app)
     end
   end
 
-  context ":edit" do
-    it "shows edit page for an applicant" do
-      edit_app = repo.applicant.create(:name => "Test", :applied_on => Date.today,
-                                       :discipline => "developer", :skill => "resident", :location => "Chicago")
+  context '#edit' do
+    let(:route) { :edit }
+
+    it 'shows edit page for an applicant' do
+      edit_app = repo.applicant.create(name: 'Test',
+                                       applied_on: Date.today,
+                                       discipline: 'developer',
+                                       skill: 'resident',
+                                       location: 'Chicago')
+
       params = { :id => edit_app.id }
-      get :edit, params
+      get route, params
       expect(assigns[:applicant]).to eq(edit_app)
     end
   end
 
-  context ":update" do
-    it "can update an applicant" do
+  context '#update' do
+    it 'can update an applicant' do
       allow(controller).to receive(:render)
       post :update, {:id => first_applicant.id,  "applicant" => {:name => "Meagan", "applied_on"=>"02/10/2014", "initial_reply_on"=>"", "completed_challenge_on"=>"", "reviewed_on"=>"", "resubmitted_challenge_on"=>"", "decision_made_on"=>"","start_date"=>"","end_date"=>""}}
       expect(assigns[:applicant].name).to eq "Meagan"

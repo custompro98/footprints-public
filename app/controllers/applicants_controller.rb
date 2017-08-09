@@ -206,8 +206,6 @@ class ApplicantsController < ApplicationController
     end_date + (distance.abs < 4 ? distance : distance.abs - 7).days
   end
 
-  private
-
   def employment_date_params
     params.require(:applicant).permit(:start_date, :end_date, :offered_on)
   end
