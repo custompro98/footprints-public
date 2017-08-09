@@ -86,11 +86,9 @@ describe Applicant do
  end
 
   context "outstanding" do
-    before :all do
-      Craftsman.create(:name => "Tywin Lannister", :email => "tywin@sevenkingdoms.com", :employment_id => 1)
-    end
 
     before :each do
+      Craftsman.create(:name => "Tywin Lannister", :email => "tywin@sevenkingdoms.com", :employment_id => 1)
       attrs[:applied_on] = 3.days.ago
       attrs[:assigned_craftsman] = "Tywin Lannister"
     end
