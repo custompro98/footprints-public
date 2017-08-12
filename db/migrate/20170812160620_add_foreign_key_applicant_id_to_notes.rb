@@ -4,15 +4,15 @@ class AddForeignKeyApplicantIdToNotes < ActiveRecord::Migration
       dir.up do
         execute <<-SQL
           ALTER TABLE notes
-            ADD CONSTRAINT fk_applicant_id
+            ADD CONSTRAINT fk_notes_applicant_id_applicants_id
             FOREIGN KEY (applicant_id)
             REFERENCES applicants(id)
         SQL
       end
       dir.down do
         execute <<-SQL
-          ALTER TABLE notes 
-            DROP FOREIGN KEY fk_applicant_id
+          ALTER TABLE notes
+            DROP FOREIGN KEY fk_notes_applicant_id_applicants_id
         SQL
       end
     end

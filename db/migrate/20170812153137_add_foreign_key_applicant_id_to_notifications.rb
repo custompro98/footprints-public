@@ -4,7 +4,7 @@ class AddForeignKeyApplicantIdToNotifications < ActiveRecord::Migration
       dir.up do
         execute <<-SQL
           ALTER TABLE notifications
-            ADD CONSTRAINT fk_applicant_id
+            ADD CONSTRAINT fk_notifications_applicant_id_applicants_id
             FOREIGN KEY (applicant_id)
             REFERENCES applicants(id)
         SQL
@@ -12,7 +12,7 @@ class AddForeignKeyApplicantIdToNotifications < ActiveRecord::Migration
       dir.down do
         execute <<-SQL
           ALTER TABLE notifications
-            DROP FOREIGN KEY fk_applicant_id
+            DROP FOREIGN KEY fk_notifications_applicant_id_applicants_id
         SQL
       end
     end

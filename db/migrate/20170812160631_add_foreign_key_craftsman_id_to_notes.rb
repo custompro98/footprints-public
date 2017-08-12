@@ -4,7 +4,7 @@ class AddForeignKeyCraftsmanIdToNotes < ActiveRecord::Migration
       dir.up do
         execute <<-SQL
           ALTER TABLE notes
-            ADD CONSTRAINT fk_craftsman_id
+            ADD CONSTRAINT fk_notes_craftsman_id_craftsmen_employment_id
             FOREIGN KEY (craftsman_id)
             REFERENCES craftsmen(employment_id)
         SQL
@@ -12,7 +12,7 @@ class AddForeignKeyCraftsmanIdToNotes < ActiveRecord::Migration
       dir.down do
         execute <<-SQL
           ALTER TABLE notes
-            DROP FOREIGN KEY fk_craftsman_id
+            DROP FOREIGN KEY fk_notes_craftsman_id_craftsmen_employment_id
         SQL
       end
     end
