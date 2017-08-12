@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809213454) do
+ActiveRecord::Schema.define(version: 20170812192824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20170809213454) do
   end
 
   create_table "applicants", force: true do |t|
-    t.string   "name"
-    t.date     "applied_on"
+    t.string   "name",                                             null: false
+    t.date     "applied_on",                                       null: false
     t.string   "email"
     t.date     "initial_reply_on"
     t.date     "completed_challenge_on"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20170809213454) do
   create_table "craftsmen", force: true do |t|
     t.string  "name"
     t.string  "status"
-    t.integer "employment_id"
+    t.integer "employment_id",                         null: false
     t.string  "uid"
     t.string  "email"
     t.string  "location",          default: "Chicago"
