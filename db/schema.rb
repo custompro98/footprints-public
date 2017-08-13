@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812192824) do
+ActiveRecord::Schema.define(version: 20170813023222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 20170812192824) do
     t.string   "mentor"
   end
 
+  add_index "applicants", ["code_submission"], name: "index_applicants_on_code_submission", unique: true, using: :btree
+  add_index "applicants", ["email"], name: "index_applicants_on_email", unique: true, using: :btree
   add_index "applicants", ["name"], name: "index_applicants_on_name", using: :btree
   add_index "applicants", ["slug"], name: "index_applicants_on_slug", unique: true, using: :btree
 

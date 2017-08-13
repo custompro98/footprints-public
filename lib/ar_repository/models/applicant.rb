@@ -79,8 +79,8 @@ class Applicant < ActiveRecord::Base
   end
 
   def outstanding?(how_many)
-    first_notification = Notification.where(:applicant_id => self.id,
-                                            :craftsman_id => self.craftsman_id).first
+    craftsman_ids = assigned_craftsman_records.map(&:craftsman_id)
+    first_notification = notifications.where(craftsman_id: craftsman_ids).first
     date = first_notification.try(:created_at) || self.created_at
     !has_steward && (date < how_many.days.ago if date)
   end
