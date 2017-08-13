@@ -25,20 +25,24 @@ class NotificationMailer < ActionMailer::Base
     mail :to => ENV["FOOTPRINTS_TEAM"], :subject => "[Footprints] REMINDER: #{@craftsman.name} has not responded regarding #{@applicant.name}"
   end
 
-  def new_craftsman_transfer(prev_craftsman, new_craftsman, applicant)
+  def new_craftsman_transfer(prev_craftsmen, new_craftsman, applicant)
     @applicant = applicant
-    @prev_craftsman = prev_craftsman
     @new_craftsman = new_craftsman
+    @prev_craftsmen = prev_craftsmen
 
-    mail :to => Rails.env.staging? ? ENV["TEST_EMAIL"] : @new_craftsman.email, :subject => "[Footprints] You are now the steward for #{@applicant.name}"
+    mail to: Rails.env.staging? ? ENV["TEST_EMAIL"] : new_craftsman.email,
+         subject: "[Footprints] You are now the steward for #{applicant.name}"
   end
 
-  def prev_craftsman_transfer(prev_craftsman, new_craftsman, applicant)
-    @applicant = applicant
-    @prev_craftsman = prev_craftsman
+  def prev_craftsman_transfer(prev_craftsmen, new_craftsman, applicant)
+    @prev_craftsmen = prev_craftsmen
     @new_craftsman = new_craftsman
+    @applicant = applicant
 
-    mail :to => Rails.env.staging? ? ENV["TEST_EMAIL"] : @prev_craftsman.email, :subject => "[Footprints] #{@new_craftsman.name} is now the steward for #{@applicant.name}"
+    prev_craftsman_emails = Array.wrap(prev_craftsmen).map(&:email).join(',')
+
+    mail to: Rails.env.staging? ? ENV["TEST_EMAIL"] : prev_craftsman_emails,
+         subject: "[Footprints] #{new_craftsman.name} is now the steward for #{applicant.name}"
   end
 
   def offer_letter_generated(applicant)

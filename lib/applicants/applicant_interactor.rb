@@ -55,10 +55,10 @@ class ApplicantInteractor
   end
 
   def send_transfer_emails
-    previous_craftsman = @applicant.craftsman
+    previous_craftsmen = @applicant.craftsmen
     new_craftsman = Craftsman.find_by_name(@params[:assigned_craftsman])
-    NotificationMailer.prev_craftsman_transfer(previous_craftsman, new_craftsman, @applicant).deliver
-    NotificationMailer.new_craftsman_transfer(previous_craftsman, new_craftsman, @applicant).deliver
+    NotificationMailer.prev_craftsman_transfer(previous_craftsmen, new_craftsman, @applicant).deliver
+    NotificationMailer.new_craftsman_transfer(previous_craftsmen, new_craftsman, @applicant).deliver
   end
 
   def send_to_warehouse_if_hired

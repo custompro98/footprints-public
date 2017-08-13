@@ -11,7 +11,7 @@
             <p>Please be sure to update Footprints as <%= @applicant.first_name %> moves through the process.</p>
 
 
-            <p>Note: <%= @applicant.first_name %> was previously assigned to <%= @prev_craftsman.name %>. If you have any questions, please contact <%= @prev_craftsman.first_name %> or the Footprints Team.</p>
+            <p>Note: <%= @applicant.first_name %> was previously assigned to <%= @prev_craftsmen.map(&:name).join(', ') %>. If you have any questions, please contact <%= @prev_craftsmen.map(&:first_name).join(', ') %> or the Footprints Team.</p>
 
         <p>Thanks! <br><br> The Footprints Team</p>
 
