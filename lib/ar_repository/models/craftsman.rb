@@ -8,7 +8,9 @@ class Craftsman < ActiveRecord::Base
   self.primary_key = 'employment_id'
 
   has_one :user, :dependent => :nullify
-  has_many :applicants, -> { not_archived }
+  has_many :applicants, -> do
+    AssignedCraftsmanRecord.unarchived_applicants
+  end, through: :assigned_craftsman_records
   has_many :assigned_craftsman_records, autosave: true
   has_many :notes
   has_many :notifications
