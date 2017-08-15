@@ -12,17 +12,19 @@ class NotificationMailer < ActionMailer::Base
   end
 
   def craftsman_reminder(applicant)
-    @craftsman = applicant.craftsman
+    @craftsmen = applicant.craftsmen
     @applicant = applicant
 
-    mail :to => Rails.env.staging? ? ENV["TEST_EMAIL"] : @craftsman.email, :subject => "[Footprints] REMINDER: You're the steward for #{@applicant.name}"
+    mail to: Rails.env.staging? ? ENV["TEST_EMAIL"] : @craftsmen.map(&:email).join(','),
+         subject: "[Footprints] REMINDER: You're the steward for #{@applicant.name}"
   end
 
   def steward_reminder(applicant)
     @applicant = applicant
-    @craftsman = applicant.craftsman
+    @craftsmen = applicant.craftsmen
 
-    mail :to => ENV["FOOTPRINTS_TEAM"], :subject => "[Footprints] REMINDER: #{@craftsman.name} has not responded regarding #{@applicant.name}"
+    mail to: ENV["FOOTPRINTS_TEAM"],
+         subject: "[Footprints] REMINDER: #{@craftsmen.map(&:name).join(',')} has not responded regarding #{@applicant.name}"
   end
 
   def new_craftsman_transfer(prev_craftsmen, new_craftsman, applicant)

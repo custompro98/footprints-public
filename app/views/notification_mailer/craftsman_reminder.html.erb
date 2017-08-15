@@ -1,4 +1,4 @@
-<p><%= @craftsman.first_name %>,</p>
+<p><%= @craftsmen.map(&:first_name).join(',') %>,</p>
 
 <p>This is a friendly reminder to respond to the request you were sent about <%= @applicant.name %>, a <%= @applicant.skill %> apprentice applicant.</p>
 
