@@ -27,7 +27,7 @@ class DashboardInteractor
   end
 
   def decline_applicant(applicant)
-    applicant.update(:craftsman_id =>  nil, :assigned_craftsman => nil)
+    applicant.update(:assigned_craftsman => nil)
     applicant.assigned_craftsman_records.map { |record| record.update_attribute(:current, false) }
   end
 
