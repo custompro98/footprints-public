@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe NotificationMailer do
-  let(:applicant) { mock_model Applicant, name: "Applicant", skill: 'skill', first_name: "App", email: 'test@test.com', applied_on: Date.today }
-  let(:craftsman) { mock_model Craftsman, name: "Craftsman", first_name: "Craft", email: "craftsman@abcinc.com", :employment_id => "12345" }
+  let(:applicant) { create(:applicant, name: "App Applicant", skill: 'skill', email: 'test@test.com', applied_on: Date.today) }
+  let(:craftsman) { create(:craftsman, name: "Craft Craftsman", email: "craftsman@abcinc.com", :employment_id => "12345") }
+  let!(:assigned_craftsman_record) { create(:assigned_craftsman_record, applicant_id: applicant.id, craftsman_id: craftsman.employment_id) }
 
   describe "#applicant_request" do
-    let(:mail) { NotificationMailer.applicant_request(craftsman, applicant) }
+    let(:mail) { NotificationMailer.applicant_request(applicant.craftsmen, applicant) }
 
     it "renders the subject" do
       expect(mail.subject).to_not be_nil

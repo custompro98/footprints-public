@@ -12,9 +12,9 @@ class Applicant < ActiveRecord::Base
 
   has_many :messages
   has_many :notes
-  has_many :assigned_craftsman_records, autosave: true
+  has_many :assigned_craftsman_records, -> { where(current: true) }, autosave: true
+  has_many :craftsmen, through: :assigned_craftsman_records
   has_many :notifications
-  belongs_to :craftsman
 
   validates_with DateValidator
   validates_with UrlValidator
@@ -66,25 +66,13 @@ class Applicant < ActiveRecord::Base
     craftsman_name = self.assigned_craftsman
     if craftsman_name.blank?
       set_no_craftsman
-    else
-      set_craftsman_by_name(craftsman_name)
     end
     self
   end
 
   def set_no_craftsman
     self.assigned_craftsman = nil
-    self.craftsman_id = nil
     self.has_steward = false
-  end
-
-  def set_craftsman_by_name(craftsman_name)
-    craftsman = Footprints::Repository.craftsman.find_by_name(craftsman_name)
-    if craftsman
-      self.craftsman_id = craftsman.id
-    else
-      self.craftsman_id = nil
-    end
   end
 
   def first_name
@@ -92,8 +80,8 @@ class Applicant < ActiveRecord::Base
   end
 
   def outstanding?(how_many)
-    first_notification = Notification.where(:applicant_id => self.id,
-                                            :craftsman_id => self.craftsman_id).first
+    craftsman_ids = assigned_craftsman_records.map(&:craftsman_id)
+    first_notification = notifications.where(craftsman_id: craftsman_ids).first
     date = first_notification.try(:created_at) || self.created_at
     !has_steward && (date < how_many.days.ago if date)
   end

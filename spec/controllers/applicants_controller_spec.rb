@@ -140,19 +140,6 @@ describe ApplicantsController do
       expect(assigns[:applicant].name).to eq "Meagan"
     end
 
-    it "updates craftsman_id from assigned_craftsman" do
-      repo.craftsman.create({:name => "A. Craftsman", :employment_id => "1234", :email => "test@abcinc.com"})
-      craftsman = repo.craftsman.find_by_name("A. Craftsman")
-      post :update, { :id => first_applicant.id, "applicant" =>  {:name => "Meagan", "applied_on"=>"02/10/2014", "initial_reply_on"=>"", "completed_challenge_on"=>"", "reviewed_on"=>"", "resubmitted_challenge_on"=>"", "decision_made_on"=>"","start_date"=>"","end_date"=>"", "assigned_craftsman" => "A. Craftsman"}}
-      expect(assigns[:applicant].craftsman_id).to eq craftsman.id
-    end
-
-    it "returns nil for craftsman_id if assigned_craftsman doesn't exist" do
-      test_app = first_applicant
-      post :update, { :id => test_app.id, "applicant" =>  {:name => "Meagan", "applied_on"=>"02/10/2014", "initial_reply_on"=>"", "completed_challenge_on"=>"", "reviewed_on"=>"", "resubmitted_challenge_on"=>"", "decision_made_on"=>"","start_date"=>"","end_date"=>"", "assigned_craftsman" => "B. Craftsman"}}
-      expect(assigns[:applicant].craftsman_id).to eq nil
-    end
-
     it 'updates applicant fields' do
       applicant = repo.applicant.create(:name => "Joe", :applied_on => applied_date)
       params = {"name" => "Joe Doe", "assigned_craftsman" => "A Craftsman", "location" => "London", "discipline" => "Developer", "about" => "Just love software." }

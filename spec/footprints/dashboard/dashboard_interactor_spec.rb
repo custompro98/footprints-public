@@ -4,22 +4,18 @@ require './lib/dashboard/dashboard_interactor'
 describe DashboardInteractor do
   let(:repo) { Footprints::Repository }
 
-  let(:confirmed_applicant)          { repo.applicant.create(name: "Confirmeded App", applied_on: Date.today, email: "test1@test.com",
-                                                             assigned_craftsman: "A. Craftsman", craftsman_id: craftsman.id, has_steward: true,
-                                                             discipline: "developer", skill: "resident", location: "Chicago") }
-  let(:unconfirmed_applicant_one)    { repo.applicant.create(name: "Applicant One", applied_on: Date.today, email: "test2@test.com",
-                                                             assigned_craftsman: "A. Craftsman", craftsman_id: craftsman.id, has_steward: false,
-                                                             discipline: "developer", skill: "resident", location: "Chicago") }
-  let(:unconfirmed_applicant_two)    { repo.applicant.create(name: "Applicant Two", applied_on: Date.today, email: "test3@test.com",
-                                                             assigned_craftsman: "A. Craftsman", craftsman_id: craftsman.id, has_steward: false,
-                                                             discipline: "developer", skill: "resident", location: "London") }
-  let(:craftsman)                    { repo.craftsman.create(name: "A. Craftsman", employment_id: '123', email: 'testcraftsman@abcinc.com') }
-  let(:craftsman_without_applicants) { repo.craftsman.create(name: "B. Craftsman", employment_id: '567', email: 'testcraftsman2@abcinc.com') }
-  let(:interactor)                   { DashboardInteractor.new(repo.craftsman) }
+  let(:confirmed_applicant) { create(:applicant, assigned_craftsman: craftsman.name, has_steward: true) }
+  let(:unconfirmed_applicant_one) { create(:applicant, assigned_craftsman: craftsman.name, has_steward: false) }
+  let(:unconfirmed_applicant_two) { create(:applicant) }
+
+  let(:craftsman) { create(:craftsman, name: 'A. Craftsman', employment_id: '123', email: 'testcraftsman@abcinc.com') }
+  let(:craftsman_without_applicants) { create(:craftsman) }
+
+  let(:interactor) { DashboardInteractor.new(repo.craftsman) }
 
   before :each do
-    repo.assigned_craftsman_record.create({applicant_id: unconfirmed_applicant_one.id, craftsman_id: craftsman.id})
-    repo.assigned_craftsman_record.create({applicant_id: unconfirmed_applicant_two.id, craftsman_id: craftsman.id})
+    repo.assigned_craftsman_record.create({applicant_id: unconfirmed_applicant_one.id, craftsman_id: craftsman.employment_id})
+    repo.assigned_craftsman_record.create({applicant_id: unconfirmed_applicant_two.id, craftsman_id: craftsman.employment_id})
     repo.assigned_craftsman_record.create({applicant_id: confirmed_applicant.id, craftsman_id: craftsman.id})
   end
 

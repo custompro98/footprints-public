@@ -2,10 +2,10 @@ require 'spec_helper'
 require './lib/applicants/applicant_interactor.rb'
 
 describe ApplicantInteractor do
-  let!(:craftsman) { Footprints::Repository.craftsman.create(:name => "A Craftsman", :employment_id => "007", :email => "acraftsman@example.com") }
-  let!(:bcraftsman) { Footprints::Repository.craftsman.create(:name => "B Craftsman", :employment_id => "008", :email => "bcraftsman@example.com") }
-  let!(:applicant) { Footprints::Repository.applicant.create(:name => "Bob", :applied_on => Date.current, :email => "test@test.com", :location => "Chicago",
-                                                             :skill => "student", :discipline => "sofware") }
+  let(:craftsman) { create(:craftsman, name: 'A Craftsman', email: 'acraftsman@example.com') }
+  let(:bcraftsman) { create(:craftsman, name: 'B Craftsman', email: 'bcraftsman@example.com') }
+  let(:applicant) { create(:applicant) }
+  let!(:craftsman_record) { create(:assigned_craftsman_record, craftsman_id: craftsman.id, applicant_id: applicant.id) }
 
   describe "#update" do
     it "updates the applicant" do
@@ -79,9 +79,9 @@ describe ApplicantInteractor do
 
     context "applicant transfered to another craftsman" do
       it "calls send_transfer_email" do
-        applicant.update_attributes(:assigned_craftsman => "A Craftsman", :has_steward => true)
-        applicant.assigned_craftsman = "B Craftsman"
-        params = { :assigned_craftsman => "B Craftsman"}
+        applicant.update_attributes(:assigned_craftsman => craftsman.name, :has_steward => true)
+        applicant.assigned_craftsman = bcraftsman.name
+        params = { :assigned_craftsman => bcraftsman.name}
         interactor = ApplicantInteractor.new(applicant, params)
         allow(interactor).to receive(:send_transfer_emails)
         interactor.notify_if_craftsman_changed
@@ -90,8 +90,8 @@ describe ApplicantInteractor do
 
       it "sends transfer email to correct craftsman" do
         ActionMailer::Base.deliveries = []
-        applicant.update_attributes(:assigned_craftsman => "A Craftsman", :has_steward => true)
-        params = { :assigned_craftsman => "B Craftsman"}
+        applicant.update_attributes(:assigned_craftsman => craftsman.name, :has_steward => true)
+        params = { :assigned_craftsman => bcraftsman.name}
         interactor = ApplicantInteractor.new(applicant, params)
         interactor.update
         mail = ActionMailer::Base.deliveries
@@ -144,7 +144,7 @@ describe ApplicantInteractor do
 
   describe "#notify_if_decision_made" do
     let!(:applicant) { Footprints::Repository.applicant.create(:name => "Bill", :applied_on => Date.current,
-                                                               :email => "test@example.com", :craftsman_id => craftsman.id,
+                                                               :email => "test@example.com",
                                                                :assigned_craftsman => "A Craftsman", :has_steward => true,
                                                                :discipline => "developer", :skill => "resident", :location => "Chicago") }
 
@@ -194,15 +194,14 @@ describe ApplicantInteractor do
 
   describe "#send_to_warehouse_if_hired" do
 
-    let!(:applicant) { 
+    let!(:applicant) {
       Footprints::Repository.applicant.create(
-        :name => "Bill", 
-        :applied_on => Date.current, 
+        :name => "Bill",
+        :applied_on => Date.current,
         :email => "test@example.com",
-        :craftsman_id => craftsman.id, 
         :assigned_craftsman => "A Craftsman",
-        :has_steward => true, 
-        :discipline => "developer", 
+        :has_steward => true,
+        :discipline => "developer",
         :skill => "student",
         :location => "Chicago") }
 

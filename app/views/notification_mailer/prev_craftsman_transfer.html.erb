@@ -2,7 +2,7 @@
   <table>
     <tr>
       <td style="color: #333; font-family: Arial, sans-serif; font-size: 14px;">
-        Hi <%= @prev_craftsman.first_name %>,
+        Hi <%= Array.wrap(@prev_craftsmen).map(&:first_name).join(', ') %>,
 
         <p><%= @applicant.name %> has been re-assigned to <%= @new_craftsman.name %>.</p>
         <p>Please reach out to <%= @new_craftsman.first_name %> if you have any questions.</p>

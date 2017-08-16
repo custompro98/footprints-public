@@ -11,7 +11,7 @@ module Footprints
 
       def mail_craftsman(applicant)
         NotificationMailer.craftsman_reminder(applicant).deliver
-        Notification.create(:applicant => applicant, :craftsman => applicant.craftsman)
+        applicant.craftsmen.map { |craftsman| Notification.create(applicant: applicant, craftsman: craftsman) }
       end
 
       def mail_steward(applicant)
