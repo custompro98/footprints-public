@@ -12,7 +12,7 @@ class Applicant < ActiveRecord::Base
 
   has_many :messages
   has_many :notes
-  has_many :assigned_craftsman_records, autosave: true
+  has_many :assigned_craftsman_records, -> { where(current: true) }, autosave: true
   has_many :craftsmen, through: :assigned_craftsman_records
   has_many :notifications
 

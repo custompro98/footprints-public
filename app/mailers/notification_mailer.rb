@@ -3,12 +3,15 @@ require './lib/applicants/applicant_presenter'
 class NotificationMailer < ActionMailer::Base
   default :from => "noreply@abcinc.com"
 
-  def applicant_request(craftsman, applicant)
-    @craftsman = craftsman
+  def applicant_request(craftsmen, applicant)
+    @craftsmen = craftsmen
     @applicant = applicant
 
-    mail :to => Rails.env.staging? ? ENV["TEST_EMAIL"] : craftsman.email,
-      :bcc => ENV["FOOTPRINTS_TEAM"], :subject => "[Footprints] You're the steward for #{@applicant.name}"
+    recipients = craftsmen.present? ? craftsmen.map(&:email).join(',') : (Rails.env.staging? ? ENV['TEST_EMAIL']: nil)
+    raise unless recipients.present?
+
+    mail to:  recipients,
+         bcc: ENV["FOOTPRINTS_TEAM"], :subject => "[Footprints] You're the steward for #{@applicant.name}"
   end
 
   def craftsman_reminder(applicant)

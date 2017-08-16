@@ -14,7 +14,7 @@ module ApplicantDispatch
     def assign_applicant
       create_assignment(best_applicant_reviewer)
 
-      NotificationMailer.applicant_request(applicant.craftsman, applicant).deliver
+      NotificationMailer.applicant_request(applicant.craftsmen, applicant).deliver
 
       applicant
     rescue Exception => error

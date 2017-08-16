@@ -8,10 +8,6 @@ describe ApplicantDispatch::Dispatcher do
   applicant_factory = SpecHelpers::ApplicantFactory.new
   craftsman_factory = SpecHelpers::CraftsmanFactory.new
 
-  before(:each) do
-    ::Footprints::Repository.craftsman.destroy_all
-  end
-
   let(:resident_skill) { Skills.get_key_for_skill('Resident') }
 
   let!(:steward) {
@@ -36,7 +32,7 @@ describe ApplicantDispatch::Dispatcher do
   it "assigns an applicant to the best available craftsman" do
     described_class.new(applicant, steward).assign_applicant
 
-    expect(applicant.reload.craftsman).to eq(craftsman)
+    expect(applicant.reload.craftsmen.first).to eq(craftsman)
   end
 
   it "defaults applicants to the steward when unassignable" do
@@ -44,7 +40,7 @@ describe ApplicantDispatch::Dispatcher do
 
     described_class.new(applicant, steward).assign_applicant
 
-    expect(applicant.reload.craftsman).to eq(steward)
+    expect(applicant.reload.craftsmen.first).to eq(steward)
   end
 
   it "defaults applicants to the steward even if location is blank" do
@@ -52,7 +48,7 @@ describe ApplicantDispatch::Dispatcher do
 
     described_class.new(applicant, steward).assign_applicant
 
-    expect(applicant.reload.craftsman).to eq(steward)
+    expect(applicant.reload.craftsmen.first).to eq(steward)
   end
 
   it "creates assigned craftsman record when assigning applicant" do
@@ -63,13 +59,15 @@ describe ApplicantDispatch::Dispatcher do
     expect(applicant.assigned_craftsman_records.count).to eq(1)
   end
 
-  it "notifies craftsman when dispatcher assigns an applicant" do
-    deliveries = ActionMailer::Base.deliveries = []
+  context 'a craftsman is assigned' do
+    it "notifies craftsman when dispatcher assigns an applicant" do
+      deliveries = ActionMailer::Base.deliveries = []
 
-    described_class.new(applicant, steward).assign_applicant
+      described_class.new(applicant, steward).assign_applicant
 
-    expect(deliveries.count).to eq(1)
-    expect(deliveries.first.to).to eq([applicant.craftsman.email])
+      expect(deliveries.count).to eq(1)
+      expect(deliveries.first.to).to eq([applicant.craftsmen.first.email])
+    end
   end
 
   it "sends the Footprints team a message if an error occurs while assigning" do
