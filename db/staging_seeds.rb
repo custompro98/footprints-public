@@ -12,7 +12,7 @@ module StagingSeeds
     private
 
     def create_craftsmen(n)
-      FactoryGirl.create_list(:user, n)
+      FactoryGirl.create_list(:user, n, create_craftsman: true)
     end
 
     def create_applicants(n, num_craftsmen)
@@ -20,6 +20,7 @@ module StagingSeeds
 
       applicants.each do |applicant|
         index = Random.rand(101)
+        craftsman_id = Random.rand(num_craftsmen) + 1
 
         applicant.initial_reply_on = Faker::Date.between(7.months.ago, 6.months.ago) if index < 90
         applicant.sent_challenge_on = Faker::Date.between(6.months.ago, 5.months.ago) if index < 60
@@ -30,9 +31,11 @@ module StagingSeeds
           applicant.decision_made_on = Faker::Date.between(2.months.ago, 1.month.ago)
           applicant.offered_on = Faker::Date.between(3.months.ago, 2.months.ago)
           applicant.start_date = applicant.offered_on + 4.months
-          applicant.end_date = applicant.start_date + Faker::Date.forward(365.days)
+
+          applicant.end_date = applicant.start_date + 365.days
 
           applicant.hired = 'yes'
+          applicant.mentor = Craftsman.find(craftsman_id).name
           applicant.archived = true
         elsif index > 90
           applicant.hired = 'no'
@@ -41,14 +44,13 @@ module StagingSeeds
 
         applicant.save!
 
-        craftsman_id = Random.rand(num_craftsmen) + 1
 
         FactoryGirl.create(:assigned_craftsman_record, applicant_id: applicant.id, craftsman_id: craftsman_id)
         FactoryGirl.create_list(:message, [2,3].sample, applicant_id: applicant.id)
 
-        [2,3].sample.each do
-          FactoryGirl.create(:note, applicant_id: applicant.id, craftsman_id: Random.rand(101) + 1)
-          FactoryGirl.create(:notification, applicant_id: applicant.id, craftsman_id: Random.rand(101) + 1)
+        [2,3].sample.times do
+          FactoryGirl.create(:note, applicant_id: applicant.id, craftsman_id: Random.rand(num_craftsmen) + 1)
+          FactoryGirl.create(:notification, applicant_id: applicant.id, craftsman_id: Random.rand(num_craftsmen) + 1)
         end
       end
     end
