@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20170813023222) do
   end
 
   add_index "craftsmen", ["employment_id"], name: "index_craftsmen_on_employment_id", unique: true, using: :btree
+  add_index "craftsmen", ["employment_id"], name: "unique_employment_id", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false

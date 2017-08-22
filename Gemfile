@@ -37,13 +37,16 @@ group :test, :development do
   gem "pry"
   gem "pry-nav"
   gem "better_errors", '1.1.0'
-  gem "faker"
 end
 
 group :test do
   gem 'database_cleaner'
-  gem 'factory_girl_rails', "~> 4.0"
   gem 'simplecov', :require => false
+end
+
+group :development, :test, :staging do
+  gem 'factory_girl_rails', "~> 4.0"
+  gem "faker"
 end
 
 group :production do
