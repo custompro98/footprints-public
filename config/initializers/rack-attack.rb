@@ -24,8 +24,8 @@ class Rack::Attack
   # Throttle all requests by IP (60rpm)
   #
   # Key: "rack::attack:#{Time.now.to_i/:period}:req/ip:#{req.ip}"
-  throttle('req/ip', :limit => 20, :period => 20.seconds) do |req|
-    req.ip # unless req.path.start_with?('/assets')
+  throttle('req/ip', :limit => 100, :period => 1.minute) do |req|
+    req.ip unless req.path.start_with?('/assets')
   end
 
   ### Custom Throttle Response ###
@@ -36,15 +36,15 @@ class Rack::Attack
   # If you want to return 503 so that the attacker might be fooled into
   # believing that they've successfully broken your app (or you just want to
   # customize the response), then uncomment these lines.
-  # self.throttled_response = lambda do |env|
-  #  [ 503,  # status
-  #    {},   # headers
-  #    ['']] # body
-  # end
+  self.throttled_response = lambda do |env|
+   [ 503,  # status
+     {},   # headers
+     ['']] # body
+  end
 
   ### Track the attacking IP address if hitting the limit
 	# Supports optional limit and period, triggers the notification only when the limit is reached.
-  Rack::Attack.track("ips that reach the throttle limit", :limit => 20, :period => 20.seconds) do |req|
+  Rack::Attack.track("ips that reach the throttle limit", :limit => 100, :period => 1.minute) do |req|
     req.user_agent
   end
 end
