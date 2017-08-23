@@ -42,7 +42,7 @@ module MemoryRepository
       records.values.select {|r| r.archived }
     end
 
-    def get_all_unarchived_applicants
+    def get_all_unarchived_applicants(page=nil, limit=nil)
       records.values.select {|r| !r.archived }
     end
 
@@ -56,7 +56,7 @@ module MemoryRepository
     end
 
     def get_applicants_by_state(state)
-      records.values.select do |applicant| 
+      records.values.select do |applicant|
         ApplicantStateMachine.determine_state(applicant) == state
       end
     end

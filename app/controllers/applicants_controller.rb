@@ -20,8 +20,8 @@ class ApplicantsController < ApplicationController
   before_filter :require_admin, :only => [:destroy, :new, :create, :hire, :make_decision, :unassigned, :assign_craftsman]
 
   def index
-    @applicants    = Footprints::ApplicantFinder.new.get_applicants(params).paginate(:page => params[:page], :per_page => 12)
-    @presenter     = ApplicantIndexPresenter.new(@applicants)
+    @applicants = Footprints::ApplicantFinder.new.get_applicants(params)
+    @presenter  = ApplicantIndexPresenter.new(@applicants)
   end
 
   def new
