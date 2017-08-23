@@ -7,7 +7,8 @@ FactoryGirl.define do
     end
 
     before(:create) do |user, evaluator|
-      create(:craftsman, email: user.email) if evaluator.create_craftsman
+      craftsman = create(:craftsman, email: user.email) if evaluator.create_craftsman
+      user.craftsman_id = craftsman.id if evaluator.create_craftsman
     end
   end
 end
