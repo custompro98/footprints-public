@@ -42,7 +42,7 @@ module ArRepository
     end
 
     def get_all_archived_applicants(page=nil, limit=nil)
-      offset = (page - 1) * limit if page && limit
+      offset = calculate_offset(page, limit) if page && limit
       if offset
         model_class.where(archived: true).order('applied_on DESC').limit(limit).offset(offset)
       else
@@ -50,8 +50,13 @@ module ArRepository
       end
     end
 
-    def get_all_unarchived_applicants
-      model_class.where(:archived => false).order('applied_on DESC')
+    def get_all_unarchived_applicants(page=nil, limit=nil)
+      offset = calculate_offset(page, limit) if page && limit
+      if offset
+        model_class.where(archived: false).order('applied_on DESC').limit(limit).offset(offset)
+      else
+        model_class.where(:archived => false).order('applied_on DESC')
+      end
     end
 
     def get_unassigned_unarchived_applicants
@@ -62,6 +67,12 @@ module ArRepository
       all.select do |applicant|
         ApplicantStateMachine.determine_state(applicant) == state
       end
+    end
+
+    private
+
+    def calculate_offset(page, limit)
+      (page - 1) * limit
     end
   end
 end
