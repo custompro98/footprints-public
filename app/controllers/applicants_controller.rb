@@ -11,7 +11,6 @@ require 'argon/applicant_offer_letter_generator'
 require 'argon/offer_letter_post'
 require 'applicants/generate_onboarding_letter'
 require 'date'
-require 'will_paginate/array'
 
 class ApplicantsController < ApplicationController
   include ApplicantsHelper

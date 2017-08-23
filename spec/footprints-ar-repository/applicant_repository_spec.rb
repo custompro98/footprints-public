@@ -16,8 +16,8 @@ describe ArRepository::ApplicantRepository do
       let(:archived) { true }
 
       it 'paginates properly' do
-         expect(subject.get_all_archived_applicants(1, 12).size).to eq 12
-         expect(subject.get_all_archived_applicants(2, 12).size).to eq 1
+        expect(subject.get_all_archived_applicants(1, 12).length).to eq 12
+        expect(subject.get_all_archived_applicants(2, 12).length).to eq 1
       end
     end
 
@@ -25,11 +25,9 @@ describe ArRepository::ApplicantRepository do
       let(:archived) { false }
 
       it 'paginates properly' do
-        expect(subject.get_all_unarchived_applicants(1, 12).size).to eq 12
-        expect(subject.get_all_unarchived_applicants(2, 12).size).to eq 1
+        expect(subject.get_all_unarchived_applicants(1, 12).length).to eq 12
+        expect(subject.get_all_unarchived_applicants(2, 12).length).to eq 1
       end
     end
   end
-
-
 end
