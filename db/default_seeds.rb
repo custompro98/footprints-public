@@ -294,9 +294,7 @@ module DefaultSeed
         employment_id = craftsman_ids.sample
         craftsman = Craftsman.find_by_employment_id(employment_id)
         AssignedCraftsmanRecord.create!(applicant_id: applicant.id, craftsman_id: employment_id)
-        ### TOOD: RM
-        applicant.assigned_craftsman = craftsman.name
-        # applicant.craftsman_id = craftsman.employment_id
+
         applicant.save
         puts "#{craftsman.name} has been assigned to #{applicant.name}"
       end
