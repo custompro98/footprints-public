@@ -5,7 +5,7 @@ module StagingSeeds
 
     def run
       create_craftsmen(100)
-      create_applicants(1200, 100)
+      create_applicants(900, 100)
       create_orphaned_users(20)
     end
 
