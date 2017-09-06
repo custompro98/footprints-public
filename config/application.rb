@@ -20,6 +20,11 @@ module Footprints
     mailer_config = File.expand_path(Rails.root.join('config', 'mailer.yml'))
     ENV.update YAML.load_file(Rails.root.join("config", "mailer.yml")) if File.exist?(mailer_config)
 
+    # Logstash configurations
+    config.lograge.enabled = true
+    config.lograge.formatter = Lograge::Formatters::Logstash.new
+    config.lograge.logger = LogStashLogger.new(type: :tcp, host: '18.220.211.95', port: 9600)
+
     # add custom validators path
     config.autoload_paths += %W["#{config.root}/app/validators/"]
     config.autoload_paths += %W["#{config.root}/lib"]
