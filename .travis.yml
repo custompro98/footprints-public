@@ -1,6 +1,8 @@
 language: ruby
 rvm:
 - 2.1.5
+before_install:
+- gem update bundler
 before_script:
   - "cp config/ci.database.yml config/database.yml"
   - "cp config/mailer.yml.example config/mailer.yml"
