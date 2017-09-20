@@ -23,7 +23,7 @@ module Footprints
     # Logstash configurations
     config.lograge.enabled = true
     config.lograge.formatter = Lograge::Formatters::Logstash.new
-    config.lograge.logger = LogStashLogger.new(type: :tcp, host: '54.208.185.114', port: 9600)
+    config.lograge.logger = LogStashLogger.new(type: :tcp, host: 'ec2-18-220-211-95.us-east-2.compute.amazonaws.com', port: 9600)
 
     # add custom validators path
     config.autoload_paths += %W["#{config.root}/app/validators/"]
