@@ -2,48 +2,150 @@ require 'spec_helper'
 require "./lib/applicants/applicant_profile_presenter"
 
 describe ApplicantProfilePresenter do
+  # for #has_background?
+  let(:codeschool) { nil }
+  let(:college_degree) { nil }
+  let(:cs_degree) { nil }
+  let(:worked_as_dev) { nil }
+
+  # for #has_application_questions?
+  let(:about) { nil }
+  let(:software_interest) { nil }
+  let(:reason) { nil }
+
+  # for #current_state
+  let(:initial_reply_on) { nil }
+  let(:sent_challenge_on) { nil }
+  let(:completed_challenge_on) { nil }
+  let(:reviewed_on) { nil }
+  let(:offered_on) { nil }
+  let(:completed_challenge_on) { nil }
+  let(:decision_made_on) { nil }
+
+  # for #url
+  let(:url) { nil }
+
+  # for #hire_action
+  let(:hired) { 'no decision' }
+  let(:start_date) { nil }
+  let(:end_date) { nil }
+
+  # for #can_be_unarchived?
+  let(:archived) { true }
 
   let(:applicant) do
     OpenStruct.new(
       name: 'Meagan',
       applied_on: Date.parse('20140101'),
+      initial_reply_on: initial_reply_on,
+      sent_challenge_on: sent_challenge_on,
+      completed_challenge_on: completed_challenge_on,
+      reviewed_on: reviewed_on,
+      offered_on: offered_on,
+      decision_made_on: decision_made_on,
       discipline: 'developer',
       skill: 'resident',
-      location: 'Chicago'
+      location: 'Chicago',
+      codeschool: codeschool,
+      college_degree: college_degree,
+      cs_degree: cs_degree,
+      worked_as_dev: worked_as_dev,
+      about: about,
+      software_interest: software_interest,
+      reason: reason,
+      url: url,
+      hired: hired,
+      start_date: start_date,
+      end_date: end_date,
+      archived: archived
     )
   end
-
 
   let(:presenter) { ApplicantProfilePresenter.new(applicant) }
 
-  it "returns false if applicant has no background information" do
-    presenter.has_background?.should be_false
+  context '#has_background?' do
+    context 'applicant has no background information' do
+      shared_examples 'has no background information' do
+        it "returns false" do
+          presenter.has_background?.should be_false
+        end
+      end
+
+      context 'applicant has nil codeschool, college_degree, cs_degree and worked_as_dev attributes' do
+        it_behaves_like 'has no background information'
+      end
+
+      context "applicant has codeschool attribute 'None'" do
+        let(:codeschool) { 'None' }
+
+        it_behaves_like 'has no background information'
+      end
+    end
+
+    context 'applicant has background information' do
+      shared_examples 'has background information' do
+        it 'returns true' do
+          presenter.has_background?.should be_true
+        end
+      end
+
+      context 'applicant has codeschool attribute' do
+        let(:codeschool) { 'Dev Bootcamp' }
+        it_behaves_like 'has background information'
+      end
+
+      context "applicant has college_degree attribute" do
+        let(:college_degree) { 'University of Texas' }
+        it_behaves_like 'has background information'
+      end
+
+      context "applicant has cs_degree attribute" do
+        let(:cs_degree) { 'yes' }
+        it_behaves_like 'has background information'
+      end
+
+      context "applicant has worked_as_dev attribute" do
+        let(:worked_as_dev) { 'yes' }
+        it_behaves_like 'has background information'
+      end
+    end
   end
 
-  it "returns true if applicant has background information" do
-    app = OpenStruct.new(
-      name: 'Meagan',
-      applied_on: Date.parse('20140101'),
-      codeschool: 'Dev Bootcamp',
-      discipline: 'developer',
-      skill: 'resident',
-      location: 'Chicago'
-    )
+  context  '#has_application_questions?' do
+    context 'applicant has no application questions' do
+      it 'returns false' do
+        presenter.has_application_questions?.should be_false
+      end
+    end
 
-    ApplicantProfilePresenter.new(app).has_background?.should be_true
+    context 'applicant has application questions' do
+      shared_examples 'has application questions' do
+        it 'returns true' do
+          presenter.has_application_questions?.should be_true
+        end
+      end
+
+      context 'has an about attribute' do
+        let(:about) { 'some info' }
+        it_behaves_like 'has application questions'
+      end
+
+      context 'has a software_interest attribute' do
+        let(:software_interest) { 'stuff about software' }
+        it_behaves_like 'has application questions'
+      end
+
+      context 'has a reason attribute' do
+        let(:reason) { 'a real reason' }
+        it_behaves_like 'has application questions'
+      end
+    end
   end
 
-  it "returns false if applicant has no application questions answered" do
-    presenter.has_application_questions?.should be_false
-  end
-
-  it "returns true if applicant has application questions answered" do
-    applicant.about = "Some info"
-    presenter.has_application_questions?.should be_true
-  end
-
-  it "displays the body of the messages correctly" do
-    presenter.display_body("Hello\n").should == "Hello<br/>"
+  context '#display_body' do
+    it "displays the body of the messages correctly" do
+      presenter.display_body("Hello\nIs---This\\Ok").should == "Hello<br/>IsThisOk"
+    end
   end
 
   it "has the most recent interaction" do
@@ -55,259 +157,181 @@ describe ApplicantProfilePresenter do
     presenter.interactions.should == {"Initial Reply On"=>"Jan 5, 2014"}
   end
 
-  context "#current_state" do
-    it "waiting for initial reply when first applied and no action yet" do
-      presenter.current_state.should == "Applied"
+  context '#current_state' do
+    context 'applied_on is the only state that is set' do
+      it "'returns 'Applied'" do
+        presenter.current_state.should == 'Applied'
+      end
     end
 
-    it "sent initial reply when steward has replied (initial_reply_on is set)" do
-      app = OpenStruct.new(
-        name: 'Meagan',
-        applied_on: Date.today,
-        initial_reply_on: Date.today,
-        discipline: "developer",
-        skill: "resident",
-        location: "Chicago"
-      )
+    context 'initial_reply_on is set' do
+      let(:initial_reply_on) { Date.today }
 
-      ApplicantProfilePresenter.new(app).current_state.should == "Contacted"
+      it "returns 'Contacted'" do
+        presenter.current_state.should == 'Contacted'
+      end
     end
 
-    it "received challenge when steward has sent challenge (sent_challenge_on is set)" do
-      app = OpenStruct.new(
-        name: 'Meagan',
-        applied_on: Date.today,
-        initial_reply_on: Date.today,
-        sent_challenge_on: Date.today,
-        discipline: "developer",
-        skill: "resident",
-        location: "Chicago"
-      )
+    context 'sent_challenge_on is set' do
+      let(:sent_challenge_on) { Date.today }
 
-      ApplicantProfilePresenter.new(app).current_state.should == "Requested Submission"
+      it "returns 'Requested Submission'" do
+        presenter.current_state.should == 'Requested Submission'
+      end
     end
 
-    it "needs to be reviewed when stewared has received challenge (completed_challenge_on is set)" do
-      app = OpenStruct.new(
-        name: 'Meagan',
-        applied_on: Date.today,
-        initial_reply_on: Date.today,
-        sent_challenge_on: Date.today,
-        completed_challenge_on: Date.today,
-        discipline: "developer",
-        skill: "resident",
-        location: "Chicago"
-      )
+    context 'completed_challenge_on is set' do
+      let(:completed_challenge_on) { Date.today }
 
-      ApplicantProfilePresenter.new(app).current_state.should == "Submitted Code"
+      it "returns 'Submitted Code'" do
+        presenter.current_state.should == 'Submitted Code'
+      end
     end
 
-    it "waiting for offer when steward has reviewed challenge (reviewed_on is set)" do
-      app = OpenStruct.new(
-        name: 'Meagan',
-        applied_on: Date.today,
-        initial_reply_on: Date.today,
-        sent_challenge_on: Date.today,
-        completed_challenge_on: Date.today,
-        reviewed_on: Date.today,
-        discipline: "developer",
-        skill: "resident",
-        location: "Chicago"
-      )
+    context 'reviewed_on is set' do
+      let(:reviewed_on) { Date.today }
 
-      ApplicantProfilePresenter.new(app).current_state.should == "Received Feedback"
+      it "returns 'Received Feedback'" do
+        presenter.current_state.should == 'Received Feedback'
+      end
     end
 
+    context 'offered_on is set' do
+      let(:offered_on) { Date.today }
 
-    it "waiting on decision when steward has extended an offer letter (offered_on is set)" do
-      app = OpenStruct.new(
-        name: 'Meagan',
-        applied_on: Date.today,
-        initial_reply_on: Date.today,
-        sent_challenge_on: Date.today,
-        completed_challenge_on: Date.today,
-        reviewed_on: Date.today,
-        offered_on: Date.today,
-        discipline: "developer",
-        skill: "resident",
-        location: "Chicago"
-      )
-
-      ApplicantProfilePresenter.new(app).current_state.should == "Extended Offer"
+      it "returns 'Extended Offer'" do
+        presenter.current_state.should == 'Extended Offer'
+      end
     end
 
-    it "completed application process when applicant has been hired (decision_made_on is set)" do
-      app = OpenStruct.new(
-        name: 'Meagan',
-        applied_on: Date.today,
-        initial_reply_on: Date.today,
-        sent_challenge_on: Date.today,
-        completed_challenge_on: Date.today,
-        reviewed_on: Date.today,
-        decision_made_on: Date.today,
-        discipline: "developer",
-        skill: "resident",
-        location: "Chicago"
-      )
+    context 'decision_made_on is set' do
+      let(:decision_made_on) { Date.today }
 
-      ApplicantProfilePresenter.new(app).current_state.should == "Completed Application"
+      it "returns 'Completed Application'" do
+        presenter.current_state.should == 'Completed Application'
+      end
+    end
+  end
+
+  context "#url" do
+    let(:url) { 'http://www.meaganwaller.com' }
+
+    it "creates valid url syntax" do
+      presenter.url.should == Array(url)
     end
 
-    context "#url" do
-      let(:app) { OpenStruct.new(name: 'Meagan', applied_on: Date.today, url: url, discipline: 'developer', skill: 'resident', location: 'Chicago') }
-      let(:url) { 'http://www.meaganwaller.com' }
+    context 'without prefix' do
+      let(:url) { 'www.meaganwaller.com' }
 
-      it "creates valid url syntax" do
-        ApplicantProfilePresenter.new(app).url.should == Array(url)
+      it "add http prefix if otherwise valid url " do
+        presenter.url.should == ["http://www.meaganwaller.com"]
+      end
+    end
+
+    context 'with https prefix' do
+      let(:url) { 'https://www.meaganwaller.com' }
+
+      it "doesn't add prefix if url has https prefix" do
+        presenter.url.should == ["https://www.meaganwaller.com"]
+      end
+    end
+
+    context 'invalid url syntax' do
+      let(:url) { 'No experience' }
+
+      it "doesn't add http prefix if not otherwise valid" do
+        presenter.url.should == []
+      end
+    end
+
+    context 'multiple urls' do
+      let(:url) { 'http://meaganwaller.com http://github.com/meaganewaller' }
+
+      it "handles with multiple urls" do
+        presenter.url.should == ["http://meaganwaller.com", "http://github.com/meaganewaller"]
       end
 
-      context 'without prefix' do
-        let(:url) { 'www.meaganwaller.com' }
+      context 'unneccessary punctation' do
+        let(:url) { 'https://meaganwaller.com, http://github.com/meaganewaller;' }
 
-        it "add http prefix if otherwise valid url " do
-          ApplicantProfilePresenter.new(app).url.should == ["http://www.meaganwaller.com"]
-        end
-      end
-
-      context 'with https prefix' do
-        let(:url) { 'https://www.meaganwaller.com' }
-
-        it "doesn't add prefix if url has https prefix" do
-          ApplicantProfilePresenter.new(app).url.should == ["https://www.meaganwaller.com"]
-        end
-      end
-
-      context 'invalid url syntax' do
-        let(:url) { 'No experience' }
-
-        it "doesn't add http prefix if not otherwise valid" do
-          ApplicantProfilePresenter.new(app).url.should == []
-        end
-      end
-
-      context 'multiple urls' do
-        let(:url) { 'http://meaganwaller.com http://github.com/meaganewaller' }
-
-        it "handles with multiple urls" do
-          ApplicantProfilePresenter.new(app).url.should == ["http://meaganwaller.com", "http://github.com/meaganewaller"]
-        end
-
-        context 'unneccessary punctation' do
-          let(:url) { 'https://meaganwaller.com, http://github.com/meaganewaller;' }
-
-          it "deals with multiple unnecessary punctuation" do
-            ApplicantProfilePresenter.new(app).url.should == ["https://meaganwaller.com", "http://github.com/meaganewaller"]
-          end
+        it "deals with multiple unnecessary punctuation" do
+          presenter.url.should == ["https://meaganwaller.com", "http://github.com/meaganewaller"]
         end
       end
     end
   end
 
   context "#hire_action" do
-    it "returns 'Hired' string if applicant has been hired" do
-      app = OpenStruct.new(
-        name: 'Meagan',
-        applied_on: Date.yesterday,
-        hired: 'yes',
-        start_date: Date.today,
-        end_date: Date.tomorrow,
-        mentor: 'A Craftsman',
-        assigned_craftsman: 'A Craftsman',
-        decision_made_on: DateTime.current,
-        discipline: 'developer',
-        skill: 'resident',
-        location: 'Chicago'
-      )
+    context 'applicant is not hired' do
+      context 'applicant is ready for hire' do
+        let(:start_date) { Date.today }
+        let(:end_date) { Date.today + 6.months }
 
-      expect(ApplicantProfilePresenter.new(app).hire_action).to eq("Hired")
+        it "returns a link to the hire action if applicant is ready for hire" do
+          expect(presenter.hire_action).to eq("<a href='#' class='decision_made_on button primary'>Hire</a>")
+        end
+      end
+
+      it "returns nothing if applicant is still going through the application process" do
+        expect(presenter.hire_action).to be_nil
+      end
     end
 
-    it "returns a link to the hire action if applicant is ready for hire" do
-      app = OpenStruct.new(
-        name: 'Meagan',
-        applied_on: Date.yesterday,
-        start_date: Date.today,
-        end_date: Date.today + 6.months,
-        hired: 'no_decision'
-      )
-      expect(ApplicantProfilePresenter.new(app).hire_action).to eq("<a href='#' class='decision_made_on button primary'>Hire</a>")
-    end
-
-    it "returns nothing if applicant is still going through the application process" do
-      app = OpenStruct.new(
-        name: 'Meagan',
-        applied_on: Date.yesterday,
-        start_date: nil,
-        end_date: nil,
-        hired: 'no_decision'
-      )
-      expect(ApplicantProfilePresenter.new(app).hire_action).to be_nil
+    context 'applicant has been hired' do
+      let(:hired) { 'yes' }
+      it "returns 'Hired'" do
+        expect(presenter.hire_action).to eq('Hired')
+      end
     end
   end
 
   context "#applicant_hired?" do
     it "returns false if no hiring decision has been made" do
-      app = OpenStruct.new(
-        name: 'Megan',
-        applied_on: Date.yesterday,
-        url: 'https://meaganwaller.com, github.com/meaganewaller;',
-        hired: 'no_decision',
-        discipline: 'developer',
-        skill: 'resident',
-        location: 'Chicago'
-      )
-
-      expect(ApplicantProfilePresenter.new(app).applicant_hired?).to be_false
+      expect(presenter.applicant_hired?).to be_false
     end
 
-    it "returns false if applicant was not hired" do
-      app = OpenStruct.new(
-        name: 'Megan',
-        applied_on: Date.yesterday,
-        url: 'https://meaganwaller.com, github.com/meaganewaller;',
-        hired: 'no',
-        assigned_craftsman: 'A Craftsman',
-        decision_made_on: DateTime.current,
-        discipline: 'developer',
-        skill: 'resident',
-        location: 'Chicago'
-      )
+    context 'applicant was not hired' do
+      let(:hired) { 'no' }
 
-      expect(ApplicantProfilePresenter.new(app).applicant_hired?).to be_false
+      it "returns false if applicant was not hired" do
+        expect(presenter.applicant_hired?).to be_false
+      end
     end
 
-    it "returns true if applicant was hired" do
-      app = OpenStruct.new(
-        name: 'Megan',
-        applied_on: Date.yesterday,
-        url: 'https://meaganwaller.com, github.com/meaganewaller;',
-        hired: 'yes',
-        start_date: Date.today,
-        end_date: Date.tomorrow,
-        mentor: 'A Craftsman',
-        assigned_craftsman: 'A Craftsman',
-        decision_made_on: DateTime.current,
-        discipline: 'developer',
-        skill: 'resident',
-        location: 'Chicago'
-      )
-
-      expect(ApplicantProfilePresenter.new(app).applicant_hired?).to be_true
+    context 'applicant was hired' do
+      let(:hired) { 'yes' }
+      it 'returns true' do
+        expect(presenter.applicant_hired?).to be_true
+      end
     end
   end
 
   context "#can_be_unarchived?" do
-    it "returns false for non-archived applicants" do
-      applicant = OpenStruct.new(
-        name: 'Meagan',
-        applied_on: Date.yesterday,
-        discipline: 'developer',
-        archived: false,
-        location: 'Chicago'
-      )
+    context 'applicant is not archived' do
+      let(:archived) { false }
 
-      expect(ApplicantProfilePresenter.new(applicant).can_be_unarchived?).to be_false
+      it 'returns false' do
+        expect(presenter.can_be_unarchived?).to be_false
+      end
     end
+
+    context 'applicant is archived and has not been hired' do
+      let(:hired) { 'no' }
+
+      it 'returns true' do
+        expect(presenter.can_be_unarchived?).to be_true
+      end
+    end
+
+    context 'has been archived and hired' do
+      let(:hired) { 'yes' }
+
+      it 'returns false' do
+        expect(presenter.can_be_unarchived?).to be_false
+      end
+    end
+
+
 
     it "returns true for archived applicants that have not been hired" do
       applicant = OpenStruct.new(
@@ -321,71 +345,20 @@ describe ApplicantProfilePresenter do
 
       expect(ApplicantProfilePresenter.new(applicant).can_be_unarchived?).to be_true
     end
-
-    it "returns false for archived applicants that have been hired" do
-      applicant = OpenStruct.new(
-        name: 'Meagan',
-        applied_on: Date.yesterday,
-        discipline: 'developer',
-        archived: true,
-        assigned_craftsman: 'A Craftsman',
-        start_date: Date.today,
-        end_date: Date.today,
-        mentor: 'A Craftsman',
-        location: 'Chicago',
-        hired: 'yes'
-      )
-
-      expect(ApplicantProfilePresenter.new(applicant).can_be_unarchived?).to be_false
-    end
   end
 
   context "#can_be_denied?" do
-    it "returns true for applicants currently in process" do
-      applicant = OpenStruct.new(
-        name: 'Name',
-        applied_on: Date.yesterday,
-        assigned_craftsman: 'A Craftsman',
-        discipline: 'developer',
-        skill: 'resident',
-        location: 'Chicago',
-        archived: false
-      )
+    context 'non archived applicants' do
+      let(:archived) { false }
 
-
-      expect(ApplicantProfilePresenter.new(applicant).can_be_denied?).to be_true
+      it "returns true" do
+        expect(presenter.can_be_denied?).to be_true
+      end
     end
-
-    it "returns false for applicants already denied" do
-      applicant = OpenStruct.new(
-        name: 'Name',
-        applied_on: Date.yesterday,
-        assigned_craftsman: 'A Craftsman',
-        discipline: 'developer',
-        skill: 'resident',
-        location: 'Chicago',
-        archived: true
-      )
-
-      expect(ApplicantProfilePresenter.new(applicant).can_be_denied?).to be_false
-    end
-
-    it "returns false for applicants already accepted/hired" do
-      applicant = OpenStruct.new(
-        name: 'Name',
-        applied_on: Date.yesterday,
-        assigned_craftsman: 'A Craftsman',
-        discipline: 'developer',
-        skill: 'resident',
-        location: 'Chicago',
-        archived: true,
-        hired: 'yes',
-        start_date: Date.today,
-        end_date: Date.today,
-        mentor: 'A Craftsman'
-      )
-
-      expect(ApplicantProfilePresenter.new(applicant).can_be_denied?).to be_false
+    context 'archived applicants' do
+      it "returns false" do
+        expect(presenter.can_be_denied?).to be_false
+      end
     end
   end
 end
