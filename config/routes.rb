@@ -5,25 +5,30 @@ Footprints::Application.routes.draw do
   get 'auth/google_oauth2/callback', to: 'sessions#create', :as => :new_session
   delete 'sessions/destroy', :as => :sessions_destroy
   get 'sessions/oauth_signin' => 'sessions#oauth_signin', :as => :oauth_signin
-  get "applicants" => 'applicants#index'
-  get "applicants/unassigned" => 'applicants#unassigned', as: 'unassigned_applicants'
-  get "applicants/new" => 'applicants#new', as: 'new_applicant'
-  post "applicants/new" => 'applicants#create'
-  post "applicants/submit" => 'applicants#submit'
-  get "applicants/:id/deny_application" => "applicants#deny_application", as: "deny_application"
-  get "applicants/:id/assign_craftsman" => "applicants#assign_craftsman", as: "assign_craftsman"
-  get "applicants/:id/hire" => 'applicants#hire', as: "hire_applicant"
-  post "update_state/:id" => 'applicants#update_state', :as => 'update_state'
-  post "make_decision/:id" => 'applicants#make_decision', :as => 'make_decision'
-  get "applicants/:id", to: 'applicants#show', as: 'applicant'
-  post "applicants/:id" => 'applicants#update'
-  get "applicants/:id/edit",to: 'applicants#edit', as: 'edit_applicant'
-  delete "applicants/:id" => 'applicants#destroy'
-  get "applicants/:id/offer_letter" => 'applicants#offer_letter'
-  get "applicants/:id/offer_letter_form" => 'applicants#offer_letter_form'
-  get "applicants/:id/onboarding_letters" => 'applicants#onboarding_letters'
+
+  get "applicants"                              => 'applicants#index'
+  get "applicants/unassigned"                   => 'applicants#unassigned', as: 'unassigned_applicants'
+  get "applicants/new"                          => 'applicants#new', as: 'new_applicant'
+  post "applicants/new"                         => 'applicants#create'
+  post "applicants/submit"                      => 'applicants#submit'
+  get "applicants/:id/deny_application"         => "applicants#deny_application", as: "deny_application"
+  get "applicants/:id/assign_craftsman"         => "applicants#assign_craftsman", as: "assign_craftsman"
+  get "applicants/:id/hire"                     => 'applicants#hire', as: "hire_applicant"
+  post "update_state/:id"                       => 'applicants#update_state', :as => 'update_state'
+  post "make_decision/:id"                      => 'applicants#make_decision', :as => 'make_decision'
+  get "applicants/:id"                          => 'applicants#show', as: 'applicant'
+  post "applicants/:id"                         => 'applicants#update'
+  get "applicants/:id/edit"                     => 'applicants#edit', as: 'edit_applicant'
+  delete "applicants/:id"                       => 'applicants#destroy'
+  get "applicants/:id/offer_letter"             => 'applicants#offer_letter'
+  get "applicants/:id/offer_letter_form"        => 'applicants#offer_letter_form'
+  get "applicants/:id/onboarding_letters"       => 'applicants#onboarding_letters'
   post "applicants/:id/update_employment_dates" => 'applicants#update_employment_dates'
-  patch "applicants/:id/unarchive" => 'applicants#unarchive', as: "unarchive_applicant"
+  patch "applicants/:id/unarchive"              => 'applicants#unarchive', as: "unarchive_applicant"
+
+  get 'external/applicant/:id'     => 'external/applicants#show',  as: 'external_applicant'
+  get 'external/applicants/new'   => 'external/applicants#new',   as: 'new_external_applicant'
+  post 'external/applicants/new'  => 'external/applicants#create', as: 'create_external_applicant'
 
   get 'users/:id', to: 'users#show', as: 'user'
   get 'users/:id/edit', to: 'users#edit', as: 'edit_user'
