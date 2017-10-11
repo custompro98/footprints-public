@@ -89,7 +89,7 @@ module Warehouse
     def self.data
       @created_at ||= Time.parse("2014-01-01 08:50:00 UTC")
       @updated_at ||= Time.parse("2014-01-10 08:50:00 UTC")
-      @start_date ||= Time.parse("#{Time.now.month}/#{Time.now.year}")
+      @start_date ||= Time.parse("#{Time.now.prev_month}/#{Time.now.year}")
       @employments ||= [
         {
           :position =>  {
