@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="heading row">
+    <h1>Apply for an apprenticeship!</h1>
+  </div>
+
+  <%= form_for :applicant, url: new_external_applicant_path, method: :post do |form| %>
+    <div class='form-whole-width'>
+      <%= form.label :name, 'Your Name' %>
+      <%= form.text_field :name, id: 'applicant-name' %>
+
+      <%= form.label :name, 'Your Email' %>
+      <%= form.text_field :email, id: 'email-address' %>
+
+      <%= form.label :name, 'Your Website' %>
+      <%= form.text_field :url, id: 'applicant-url' %>
+    </div>
+
+    <div class='form-whole-width'>
+      <%= form.label :location, 'Preferred Location' %>
+      <p>
+        <%= form.select :location, ["Chicago", "London", "Los Angeles"], {}, class: "dropdown", style:"width: 140px" %>
+      </p>
+
+      <%= form.label :discipline, 'Position' %>
+      <p>
+        <%= form.select :discipline, {"Developer" => "developer", "Designer" => "designer"}, {}, class: "dropdown", style: "width: 140px" %>
+      </p>
+
+       <%= form.label :skill, 'Describe your skill level' %>
+      <p>
+        <%= form.select :skill, {"10+ years" => "craftsman", "2-9 years" => "resident", "2 years or less" => "student"}, {}, class: "dropdown", style: "width: 140px" %>
+      </p>
+
+      <%= form.label :about, 'Tell us a little bit about yourself' %>
+      <p>
+        <%= form.text_area :about, id: 'about_applicant' %>
+      </p>
+
+      <%= form.label :software_interest, 'Why do you love building software?' %>
+      <p>
+        <%= form.text_area :software_interest, id: 'applicant_software_interest' %>
+      </p>
+
+      <%= form.label :reason, 'Why do you want to work here?' %>
+      <p>
+        <%= form.text_area :reason, id: 'applicant_reason' %>
+      </p>
+    </div>
+
+    <div class="form-column">
+      <p>Please indicate whether you have the following experience.</p>
+      <%= form.label :codeschool, 'Code School' %>
+      <p>
+        <%= form.select :codeschool, Applicant.code_schools, { selected: @applicant.codeschool }, { id: 'codeschool-select', class: "dropdown cs-select", style: "width: 140px"} %>
+      </p>
+
+      <% [:college_degree, :cs_degree, :worked_as_dev].each do |field| %>
+        <%= form.label field, format_label(field) %>
+        <p>
+          <%= form.select field.to_s, ["None", 'Yes', 'No'], { selected: @applicant.send(field) }, { id: field.to_s, class: "dropdown", style: "width: 140px"} %>
+        </p>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <%= form.submit value: 'Submit', id: 'add_applicant', class: 'button primary' %>
+    </div>
+  <% end %>
+</div>
