@@ -277,7 +277,8 @@ module DefaultSeed
         :login => "you@abcinc.com",
         :provider => "google_oauth2",
         :email => "you@abcinc.com",
-        :admin => true
+        :admin => true,
+        :employee => true
       })
 
       puts "new user added to the #{Rails.env} environment"
