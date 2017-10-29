@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170813023222) do
+ActiveRecord::Schema.define(version: 20171029024006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20170813023222) do
   create_table "annual_starting_craftsman_salaries", force: true do |t|
     t.string "location", null: false
     t.float  "amount",   null: false
+  end
+
+  create_table "answers", force: true do |t|
+    t.integer "user_id",         null: false
+    t.integer "field_id",        null: false
+    t.integer "filled_form_id",  null: false
+    t.integer "field_choice_id"
+    t.string  "answer_text"
   end
 
   create_table "applicants", force: true do |t|
@@ -89,6 +97,31 @@ ActiveRecord::Schema.define(version: 20170813023222) do
   add_index "craftsmen", ["employment_id"], name: "index_craftsmen_on_employment_id", unique: true, using: :btree
   add_index "craftsmen", ["employment_id"], name: "unique_employment_id", unique: true, using: :btree
 
+  create_table "field_choices", force: true do |t|
+    t.string  "name",     null: false
+    t.integer "field_id", null: false
+  end
+
+  create_table "fields", force: true do |t|
+    t.string  "name",        null: false
+    t.string  "form_type",   null: false
+    t.boolean "has_choices", null: false
+  end
+
+  create_table "filled_forms", force: true do |t|
+    t.integer  "applicant_id", null: false
+    t.integer  "filler_id",    null: false
+    t.string   "form_type",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "form_assignees", force: true do |t|
+    t.integer "user_id",                       null: false
+    t.integer "filled_form_id",                null: false
+    t.boolean "active",         default: true, null: false
+  end
+
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -118,6 +151,16 @@ ActiveRecord::Schema.define(version: 20170813023222) do
     t.float   "amount",   null: false
   end
 
+  create_table "new_users", force: true do |t|
+    t.string   "email",                        null: false
+    t.string   "name",                         null: false
+    t.string   "location",                     null: false
+    t.integer  "user_role_id",                 null: false
+    t.boolean  "archived",     default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "notes", force: true do |t|
     t.text     "body"
     t.integer  "craftsman_id"
@@ -129,6 +172,18 @@ ActiveRecord::Schema.define(version: 20170813023222) do
   create_table "notifications", force: true do |t|
     t.integer  "applicant_id"
     t.integer  "craftsman_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_roles", force: true do |t|
+    t.string "name", null: false
+  end
+
+  create_table "user_salaries", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "amount",     null: false
+    t.boolean  "monthly",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
