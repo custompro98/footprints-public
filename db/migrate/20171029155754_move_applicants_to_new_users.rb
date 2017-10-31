@@ -1,7 +1,6 @@
 class MoveApplicantsToNewUsers < ActiveRecord::Migration
   def up
     applicant_role = ::UserRole.create(name: 'applicant')
-
     # Add the applicants to the new users table
     execute <<-SQL
       INSERT INTO new_users(email, name, location, user_role_id, archived, created_at, updated_at)
@@ -44,9 +43,9 @@ class MoveApplicantsToNewUsers < ActiveRecord::Migration
             ('Los Angeles', #{field_ids[1]}),
             ('Developer', #{field_ids[2]}),
             ('Designer', #{field_ids[2]}),
-            ('10+ years', #{field_ids[3]}),
-            ('2-9 years', #{field_ids[3]}),
-            ('2 years or less', #{field_ids[3]}),
+            ('craftsman', #{field_ids[3]}),
+            ('resident', #{field_ids[3]}),
+            ('student', #{field_ids[3]}),
             ('None', #{field_ids[7]}),
             ('App Academy', #{field_ids[7]}),
             ('Bitmaker Labs', #{field_ids[7]}),
@@ -93,6 +92,7 @@ class MoveApplicantsToNewUsers < ActiveRecord::Migration
     SQL
 
     answers = applicants.map do |applicant|
+
       [
         {
           user_id: applicant.new_user_id,
@@ -147,28 +147,28 @@ class MoveApplicantsToNewUsers < ActiveRecord::Migration
           user_id: applicant.new_user_id,
           field_id: field_map[:codeschool],
           filled_form_id: applicant.filled_form_id,
-          field_choice_id: execute("SELECT id FROM field_choices WHERE field_id = #{field_map[:codeschool]} AND name ILIKE '#{applicant.codeschool}'").first[:id],
+          field_choice_id: execute("SELECT id FROM field_choices WHERE field_id = #{field_map[:codeschool]} AND name ILIKE '#{applicant.codeschool || 'None'}'").first[:id],
           answer_text: nil
         },
         {
           user_id: applicant.new_user_id,
           field_id: field_map[:college_degree],
           filled_form_id: applicant.filled_form_id,
-          field_choice_id: execute("SELECT id FROM field_choices WHERE field_id = #{field_map[:college_degree]} AND name ILIKE '#{applicant.college_degree}'").first[:id],
+          field_choice_id: execute("SELECT id FROM field_choices WHERE field_id = #{field_map[:college_degree]} AND name ILIKE '#{applicant.college_degree || 'None'}'").first[:id],
           answer_text: nil
         },
         {
           user_id: applicant.new_user_id,
           field_id: field_map[:cs_degree],
           filled_form_id: applicant.filled_form_id,
-          field_choice_id: execute("SELECT id FROM field_choices WHERE field_id = #{field_map[:cs_degree]} AND name ILIKE '#{applicant.cs_degree}'").first[:id],
+          field_choice_id: execute("SELECT id FROM field_choices WHERE field_id = #{field_map[:cs_degree]} AND name ILIKE '#{applicant.cs_degree || 'None'}'").first[:id],
           answer_text: nil
         },
         {
           user_id: applicant.new_user_id,
           field_id: field_map[:worked_as_dev],
           filled_form_id: applicant.filled_form_id,
-          field_choice_id: execute("SELECT id FROM field_choices WHERE field_id = #{field_map[:worked_as_dev]} AND name ILIKE '#{applicant.worked_as_dev}'").first[:id],
+          field_choice_id: execute("SELECT id FROM field_choices WHERE field_id = #{field_map[:worked_as_dev]} AND name ILIKE '#{applicant.worked_as_dev || 'None'}'").first[:id],
           answer_text: nil
         }
       ].select { |answer| answer[:field_choice_id].present? || answer[:answer_text].present? }

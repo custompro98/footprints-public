@@ -4,7 +4,7 @@ class MoveCraftsmenToNewUsers < ActiveRecord::Migration
 
     execute <<-SQL
       INSERT INTO new_users(email, name, location, user_role_id, archived, created_at, updated_at)
-      SELECT email, name, location, #{crafter_role.id}, archived, now(), now()
+      SELECT coalesce(email, 'test@example.com'), name, location, #{crafter_role.id}, archived, now(), now()
       FROM craftsmen
     SQL
   end
