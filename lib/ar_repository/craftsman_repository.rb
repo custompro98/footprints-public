@@ -1,22 +1,17 @@
 require 'ar_repository/models/craftsman'
 require 'ar_repository/base_repository'
 
+
 module ArRepository
   class CraftsmanRepository
     include BaseRepository
 
     def model_class
-      ::Craftsman
+      ::NewUser
     end
 
     def create(attributes = {})
-      begin
-        craftsman = model_class.new(attributes)
-        craftsman.save!
-        craftsman
-      rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique => invalid
-        raise Footprints::RecordNotValid.new(craftsman)
-      end
+      craftsman = CreateCraftsmanService.create(attributes)
     end
 
     def find_by_name(name)
@@ -53,6 +48,12 @@ module ArRepository
 
     def archived
       model_class.archived
+    end
+
+    private
+
+    def format_attributes(attributes)
+      attributes.merge!(user_role: UserRole.find_by_name('crafter'))
     end
   end
 end
