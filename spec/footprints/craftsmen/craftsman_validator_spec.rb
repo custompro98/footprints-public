@@ -5,9 +5,12 @@ describe CraftsmanValidator do
   let(:applicant) { Footprints::Repository.applicant.create(:name => "A Applicant", :applied_on => Date.current,
                                                             :discipline => "developer", :skill => "resident", :location => "Chicago") }
 
+  let!(:new_user_craftsmen) { create(:new_user, name: 'A Craftsman', user_role_id: user_role_id, original_user_id: craftsman.employment_id)}
+  let(:user_role_id) { create(:user_role).id }
+  let(:craftsman) { Footprints::Repository.craftsman.create(:name => "A Craftsman", :employment_id => "007") }
+
   context "valid" do
     it "validates applicant with valid craftsman" do
-      craftsman = Footprints::Repository.craftsman.create(:name => "A Craftsman", :employment_id => "007")
       applicant.assigned_craftsman = "A Craftsman"
       expect(applicant).to be_valid
     end

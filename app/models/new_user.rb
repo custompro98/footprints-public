@@ -24,4 +24,8 @@ class NewUser < ActiveRecord::Base
   def self.find_by_id(id)
     find_by_original_user_id(Craftsman.find_by_id(id).id)
   end
+
+  def self.find_by_name(name)
+    find_by_original_user_id(Craftsman.find_by_name(name).try(:id))
+  end
 end

@@ -18,7 +18,7 @@ class AddReferenceColumnToOriginalUser < ActiveRecord::Migration
 
       craftsman_emails.each do |craftsman_email|
         execute("
-          UPDATE new_users SET original_user_id=(SELECT id from craftsmen where email='#{craftsman_email}')
+          UPDATE new_users SET original_user_id=(SELECT employment_id from craftsmen where email='#{craftsman_email}')
           WHERE email='#{craftsman_email}'
         ")
       end

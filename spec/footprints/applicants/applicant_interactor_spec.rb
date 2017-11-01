@@ -3,7 +3,10 @@ require './lib/applicants/applicant_interactor.rb'
 
 describe ApplicantInteractor do
   let(:craftsman) { create(:craftsman, name: 'A Craftsman', email: 'acraftsman@example.com') }
+  let!(:new_user_craftsmen) { create(:new_user, name: 'A Craftsman', email: 'acraftsman@example.com', user_role_id: user_role_id, original_user_id: craftsman.employment_id)}
+  let(:user_role_id) { create(:user_role).id }
   let(:bcraftsman) { create(:craftsman, name: 'B Craftsman', email: 'bcraftsman@example.com') }
+  let!(:new_user_bcraftsmen) { create(:new_user, name: 'B Craftsman', email: 'bcraftsman@example.com', user_role_id: user_role_id, original_user_id: bcraftsman.employment_id)}
   let(:applicant) { create(:applicant) }
   let!(:craftsman_record) { create(:assigned_craftsman_record, craftsman_id: craftsman.id, applicant_id: applicant.id) }
 

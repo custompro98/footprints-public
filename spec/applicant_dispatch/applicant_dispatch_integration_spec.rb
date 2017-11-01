@@ -9,6 +9,7 @@ describe ApplicantDispatch::Dispatcher do
   craftsman_factory = SpecHelpers::CraftsmanFactory.new
 
   let(:resident_skill) { Skills.get_key_for_skill('Resident') }
+  let!(:user_role) { create(:user_role) }
 
   let!(:steward) {
     craftsman_factory.create(:name => "Steward Sterlington",
