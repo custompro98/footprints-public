@@ -13,9 +13,9 @@ module External
     end
 
     def create
-      @applicant = repo.applicant.new(applicant_params)
-      @applicant.save!
+      ::CreateApplicantService.create(applicant_params)
       # TODO: assign craftsmen here
+      @applicant = ::Applicant.find_by_email(applicant_params['email'])
       redirect_to(external_applicant_path(@applicant), :notice => "Your application was submitted successfully!")
     rescue StandardError => e
       flash.now[:error] = [e.message]
