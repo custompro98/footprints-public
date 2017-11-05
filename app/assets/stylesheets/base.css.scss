@@ -1617,7 +1617,6 @@ input.required {
 }
 
 .admin_form_sidebar {
-  border: 1px solid $gray;
   width: 23%;
   height: 100vh;
   float: left;
@@ -1639,4 +1638,8 @@ input.required {
   width: 66%;
   float: right;
   margin: 0 10% 2% 0;
+}
+
+.underlined {
+  border-bottom: 1px solid $gray;
 }
