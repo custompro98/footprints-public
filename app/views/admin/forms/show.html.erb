@@ -1,3 +1,9 @@
-<div class='success-msg'>
+<div class='admin_form_header'>
   <h1><%= @form_type.capitalize %> Form</h1>
+</div>
+<%= render 'sidebar', locals: {active_type: @form_type} %>
+<div>
+  <% @fields.each do |field| %>
+    <%= render 'field_answer_card', locals: {field: field} %>
+  <% end %>
 </div>
