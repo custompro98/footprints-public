@@ -67,5 +67,7 @@ Footprints::Application.routes.draw do
   get "apprentices/:id" => "apprentices#edit"
   put "apprentices/:id" => "apprentices#update"
 
+  get 'admin/forms/:form_type/show' => 'admin/forms#show', as: 'admin_show_form'
+
   root :to => "dashboard#index"
 end
