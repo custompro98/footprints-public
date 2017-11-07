@@ -1,12 +1,16 @@
 <div class='field_answer_card_box'>
-  <div class='underlined'>
-    Q: <%= locals[:field].name %>
+  <div class='underlined js-field'>
+    <span>Q: </span>
+    <%= text_field("questions[#{index}]", :name, value: field.name) %>
   </div>
-  <% if locals[:field].has_choices? %>
-    <% locals[:field].choices.each do |choice| %>
-      <div>
-        A: <%= choice.name %>
-      </div>
+  <div class='answer-list'>
+    <% if field.has_choices? %>
+      <% field.choices.each_with_index do |choice, i| %>
+        <%= render 'answer_card', {choice: choice, index: index, choice_index: i} %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+  <div class='add-answer-link'>
+    <span data-field-index=<%= index %>> Add an answer </span>
+  </div>
 </div>

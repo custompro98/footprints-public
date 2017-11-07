@@ -2,8 +2,19 @@
   <h1><%= @form_type.capitalize %> Form</h1>
 </div>
 <%= render 'sidebar', locals: {active_type: @form_type} %>
-<div>
-  <% @fields.each do |field| %>
-    <%= render 'field_answer_card', locals: {field: field} %>
+<div class='field-list-container'>
+<!-- Need to create a form here -->
+  <%= form_tag(admin_create_form_path(form_type: @form_type)) do %>
+  <div class='field-list'>
+    <% @fields.each_with_index do |field, i| %>
+      <%= render 'field_answer_card', {field: field, index: i} %>
+    <% end %>
+  </div>
+  <div class='form-submit'>
+    <%= submit_tag('Save') %>
+  </div>
   <% end %>
+  <div class='add-field-link'>
+    <span> Add a field </span>
+  </div>
 </div>

@@ -67,7 +67,11 @@ Footprints::Application.routes.draw do
   get "apprentices/:id" => "apprentices#edit"
   put "apprentices/:id" => "apprentices#update"
 
-  get 'admin/forms/:form_type/show' => 'admin/forms#show', as: 'admin_show_form'
+  get 'admin/forms/:form_type'  => 'admin/forms#show', as: 'admin_show_form'
+  post 'admin/forms/:form_type' => 'admin/forms#create', as: 'admin_create_form'
+
+  get 'admin/field'        => 'admin/fields#add',        as: 'admin_add_field'
+  get 'admin/field_choice' => 'admin/fields#add_choice', as: 'admin_add_field_choice'
 
   root :to => "dashboard#index"
 end
