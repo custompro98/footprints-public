@@ -1643,3 +1643,20 @@ input.required {
 .underlined {
   border-bottom: 1px solid $gray;
 }
+
+.field-list-container {
+  position: relative;
+}
+
+.field-list {
+  position: absolute;
+}
+
+.add-field-link {
+  position: absolute;
+}
+
+.form-submit {
+  padding-top: 100px;
+  position: absolute;
+}
