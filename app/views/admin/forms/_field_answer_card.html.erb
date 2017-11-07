@@ -1,0 +1,12 @@
+<div class='field_answer_card_box'>
+  <div class='underlined'>
+    Q: <%= locals[:field].name %>
+  </div>
+  <% if locals[:field].has_choices? %>
+    <% locals[:field].choices.each do |choice| %>
+      <div>
+        A: <%= choice.name %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
