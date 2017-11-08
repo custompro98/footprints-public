@@ -1635,9 +1635,9 @@ input.required {
 
 .field_answer_card_box {
   border: 1px solid $gray;
-  width: 66%;
-  float: right;
+  width: 100%;
   margin: 0 10% 2% 0;
+  background-color: $light-gray;
 }
 
 .underlined {
@@ -1645,18 +1645,20 @@ input.required {
 }
 
 .field-list-container {
-  position: relative;
-}
+  margin-left: calc(23% + 32px);
 
-.field-list {
-  position: absolute;
 }
 
 .add-field-link {
-  position: absolute;
+  margin-right: 75px;
+  text-align: right;
 }
 
 .form-submit {
-  padding-top: 100px;
-  position: absolute;
+  margin-right: 75px;
+  text-align: right;
+
+  input {
+    background-color: $green;
+  }
 }
