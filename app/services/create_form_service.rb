@@ -1,34 +1,44 @@
 class CreateFormService
+
   class << self
-
     def create_form(form_type, form_data)
-      empty_form_data
-
-      form_data.each do |_, field_data|
-        next if field_data[:name].blank?
-
-        answers = (field_data[:answers] || []).map do |_, answer|
-          answer[:name] if answer[:name].present?
-        end.compact
-
-        field = Field.create!(name: field_data[:name],
-                              form_type: form_type,
-                              has_choices: answers.present?)
-
-        if field.has_choices
-          answers.each do |answer|
-            FieldChoice.create!(name: answer, field_id: field.id)
-          end
-        end
-      end
+      CreateFormService.new.create_form(form_type, form_data)
     end
-
-    private
-
-    def empty_form_data
-      ::Field.delete_all
-      ::FieldChoice.delete_all
-    end
-
   end
+
+  def create_form(form_type, form_data)
+    empty_form_data
+
+    form_data.each do |_, field_data|
+      next if field_data[:name].blank?
+
+      choices = choices_from(field_data[:answers])
+
+      field = Field.create!(name: field_data[:name],
+                            form_type: form_type,
+                            has_choices: choices.present?)
+
+      create_choices_for_field(choices, field.id)
+    end
+  end
+
+  private
+
+  def choices_from(choices)
+    return [] unless choices.present?
+
+    choices
+      .select { |_, choice| choice[:name].present? }
+      .map { |_, choice| choice[:name] }
+  end
+
+  def create_choices_for_field(choices, field_id)
+    choices.each { |choice| FieldChoice.create!(name: choice, field_id: field_id) }
+  end
+
+  def empty_form_data
+    ::Field.delete_all
+    ::FieldChoice.delete_all
+  end
+
 end
