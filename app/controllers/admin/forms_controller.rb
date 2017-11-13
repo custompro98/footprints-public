@@ -7,9 +7,6 @@ module Admin
     end
 
     def create
-      Field.delete_all
-      FieldChoice.delete_all
-
       ::CreateFormService.create_form(params[:form_type], params[:questions])
 
       flash[:notice] = 'Form saved!'
