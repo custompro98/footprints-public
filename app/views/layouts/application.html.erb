@@ -55,19 +55,21 @@
       </nav>
     </header>
 
-    <% if flash[:notice] %>
-      <div id="flash-notices">
-        <p class="flash notice"><%= flash[:notice].titleize %></p>
-      <% end %>
-      <% if flash[:error] %>
-        <% flash[:error].each do |e| %>
-          <p class="flash warning"><%= e.titleize.gsub('Url', 'URL') + "." %></p>
-        <% end %>
-      </div>
-    <% end %>
+    <div id="flash-notices">
+      <%= render partial: 'shared/notice_banner' %>
+    </div>
 
     <%= yield %>
 
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        setTimeout(function() {
+          $('#flash-notices').fadeOut(300, function() {
+            $(this).remove();
+          })
+        }, 5000);
+      })
+    </script>
   </body>
 </html>

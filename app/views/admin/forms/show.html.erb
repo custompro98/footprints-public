@@ -4,7 +4,7 @@
 <%= render 'sidebar', locals: {active_type: @form_type} %>
 <div class='field-list-container'>
 <!-- Need to create a form here -->
-  <%= form_tag(admin_create_form_path(form_type: @form_type)) do %>
+<%= form_tag admin_create_form_path(form_type: @form_type), remote: true do %>
   <div class='field-list'>
     <% @fields.each_with_index do |field, i| %>
       <%= render 'field_answer_card', {field: field, index: i} %>
