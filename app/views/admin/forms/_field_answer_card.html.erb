@@ -1,6 +1,6 @@
 <div class='field_answer_card_box'>
   <div class='underlined js-field'>
-    <span>Q: </span>
+    <%= label_tag "questions[#{index}]", 'Q:' %>
     <%= text_field("questions[#{index}]", :name, value: field.name) %>
   </div>
   <div class='answer-list'>
@@ -11,6 +11,6 @@
     <% end %>
   </div>
   <div class='add-answer-link'>
-    <span data-field-index=<%= index %>> Add an answer </span>
+      <span data-field-index=<%= index %>> Add an answer </span>
   </div>
 </div>
