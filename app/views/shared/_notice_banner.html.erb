@@ -1,0 +1,8 @@
+<% if flash[:notice] %>
+  <p class="flash notice"><%= flash[:notice].titleize %></p>
+<% end %>
+<% if flash[:error] %>
+  <% flash[:error].each do |e| %>
+    <p class="flash warning"><%= e.titleize.gsub('Url', 'URL') + "." %></p>
+  <% end %>
+<% end %>
