@@ -7,7 +7,7 @@ class CreateFormService
   end
 
   def create_form(form_type, form_data)
-    empty_form_data
+    empty_form_data(form_type)
 
     form_data.each do |_, field_data|
       next if field_data[:name].blank?
@@ -36,9 +36,10 @@ class CreateFormService
     choices.each { |choice| FieldChoice.create!(name: choice, field_id: field_id) }
   end
 
-  def empty_form_data
-    ::Field.delete_all
-    ::FieldChoice.delete_all
+  def empty_form_data(form_type)
+    fields = ::Field.where(form_type: form_type)
+    fields.delete_all
+    ::FieldChoice.where(id: fields.map(&:id)).delete_all
   end
 
 end
