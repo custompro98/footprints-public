@@ -1639,10 +1639,13 @@ input.required {
   margin: 0 10% 2% 0;
   background-color: $light-gray;
 
-  .delete-btn {
+  .delete-field-btn, .delete-answer-btn {
+    cursor: pointer;
+  }
+
+  .delete-field-btn {
     float: right;
     margin-right: 5px;
-    cursor: pointer;
   }
 
   label { display: inline-block;

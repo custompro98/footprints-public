@@ -1,7 +1,8 @@
 $(function() {
   $('.add-field-link').click(addFieldTemplate);
   $('.add-answer-link').click(addAnswerTemplate);
-  $('.delete-btn').click(deleteField);
+  $('.delete-field-btn').click(deleteField);
+  $('.delete-answer-btn').click(deleteAnswer);
 })
 
 function addFieldTemplate(e) {
@@ -32,11 +33,21 @@ function addAnswerTemplate(e) {
     success: function(response) {
       $(answerList).append(response.html);
       $('.add-answer-link').off('click').on('click', addAnswerTemplate);
+      $('.delete-answer-btn').click(deleteAnswer);
     }
   });
 }
 
+function submitForm() {
+  $('input[type=submit]').click();
+}
+
 function deleteField(e) {
   $(e.target).parents('.field_answer_card_box').remove();
-  $('input[type=submit]').click();
+  submitForm();
+}
+
+function deleteAnswer(e) {
+  $(e.target).parents('.answer-block').remove();
+  submitForm();
 }
