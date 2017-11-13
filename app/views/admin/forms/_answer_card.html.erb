@@ -1,4 +1,5 @@
 <div class="answer-block">
   <%= label_tag "questions[#{index}][answers][#{choice_index}]", 'A:' %>
   <%= text_field("questions[#{index}][answers][#{choice_index}]", :name, value: choice.name) %>
+  <span class='delete-answer-btn'>x</span>
 </div>
