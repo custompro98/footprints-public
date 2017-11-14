@@ -3,6 +3,7 @@ $(function() {
   $('.add-answer-link').click(addAnswerTemplate);
   $('.delete-field-btn').click(deleteField);
   $('.delete-answer-btn').click(deleteAnswer);
+  $('input[type=text]').focusout(submitForm);
 })
 
 function addFieldTemplate(e) {
@@ -17,6 +18,7 @@ function addFieldTemplate(e) {
       $('.add-field-link').off('click').on('click', addFieldTemplate);
       $('.add-answer-link').off('click').on('click', addAnswerTemplate);
       $('.delete-btn').off('click').on('click', deleteField);
+      $('input[type=text]').off('focusout').on('focusout', submitForm);
     }
   });
 }
@@ -34,6 +36,7 @@ function addAnswerTemplate(e) {
       $(answerList).append(response.html);
       $('.add-answer-link').off('click').on('click', addAnswerTemplate);
       $('.delete-answer-btn').click(deleteAnswer);
+      $('input[type=text]').off('focusout').on('focusout', submitForm);
     }
   });
 }
