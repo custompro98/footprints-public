@@ -1,5 +1,8 @@
 <div class='admin_form_sidebar'>
   <div class="admin_form_tab <%= locals[:active_type] == 'application' ? 'active' : '' %>">
-    Application
+    <%= link_to 'Application', admin_show_form_path(form_type: 'application') %>
+  </div>
+  <div class="admin_form_tab <%= locals[:active_type] == 'evaluation' ? 'active' : '' %>">
+    <%= link_to 'Evaluation', admin_show_form_path(form_type: 'evaluation') %>
   </div>
 </div>
