@@ -4,6 +4,7 @@ describe AnalyticsHelper do
   let(:repo) { Footprints::Repository }
 
   before :each do
+    create(:user_role)
     repo.applicant.destroy_all
     repo.craftsman.destroy_all
     craftsman = repo.craftsman.create(:name => "A Craftsman", :email => "acraftsman@abcinc.com", :employment_id => "7")

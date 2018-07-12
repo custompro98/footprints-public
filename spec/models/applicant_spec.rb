@@ -16,6 +16,8 @@ describe Applicant do
   end
 
   let!(:craftsman) { create(:craftsman, name: 'A Craftsman') }
+  let!(:new_user_craftsmen) { create(:new_user, name: 'A Craftsman', user_role_id: user_role_id, original_user_id: craftsman.employment_id)}
+  let(:user_role_id) { create(:user_role).id }
 
   it 'has available code schools' do
     Applicant.code_schools.should_not be_empty

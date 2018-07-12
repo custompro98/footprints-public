@@ -9,6 +9,7 @@ describe ApplicantsController do
   let(:reviewed_date)        { Date.today - 4.days }
   let(:resubmitted_ttt_date) { Date.today - 3.days }
   let(:decision_made_date)   { Date.today - 2.days }
+  let!(:user_role_id) { create(:user_role).id }
   let(:first_applicant)  { repo.applicant.create(:name => "First", :applied_on => applied_date,
                                                 :discipline => "developer", :skill => "resident", :location => "Chicago") }
   let(:second_applicant) { repo.applicant.create(:name => "Second", :applied_on => applied_date, :initial_reply_on => initial_reply_date,

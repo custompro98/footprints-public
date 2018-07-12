@@ -8,10 +8,13 @@ describe DashboardInteractor do
   let(:unconfirmed_applicant_one) { create(:applicant, assigned_craftsman: craftsman.name, has_steward: false) }
   let(:unconfirmed_applicant_two) { create(:applicant) }
 
+  let!(:new_user_craftsmen) { create(:new_user, name: 'A. Craftsman', user_role_id: user_role_id, original_user_id: craftsman.employment_id)}
   let(:craftsman) { create(:craftsman, name: 'A. Craftsman', employment_id: '123', email: 'testcraftsman@abcinc.com') }
   let(:craftsman_without_applicants) { create(:craftsman) }
 
   let(:interactor) { DashboardInteractor.new(repo.craftsman) }
+
+  let(:user_role_id) { create(:user_role).id }
 
   before :each do
     repo.assigned_craftsman_record.create({applicant_id: unconfirmed_applicant_one.id, craftsman_id: craftsman.employment_id})

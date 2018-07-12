@@ -8,6 +8,8 @@ describe Footprints::Reminder do
   let(:craftsman_factory) { SpecHelpers::CraftsmanFactory.new }
   let!(:steward) { create(:craftsman, email: ENV['STEWARD']) }
   let(:craftsman) { create(:craftsman, name: 'A. Craftsman', email: 'craftsman@example.com') }
+  let!(:new_user_craftsmen) { create(:new_user, name: 'A. Craftsman', user_role_id: user_role_id, original_user_id: craftsman.employment_id)}
+  let(:user_role_id) { create(:user_role).id }
   let(:applicant) { create(:applicant, applied_on: applied_on, created_at: created_at, assigned_craftsman: craftsman.name) }
   let!(:assigned_craftsman_record) { create(:assigned_craftsman_record, craftsman_id: craftsman.employment_id, applicant_id: applicant.id) }
 

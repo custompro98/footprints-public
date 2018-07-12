@@ -10,6 +10,7 @@ describe ArRepository::CraftsmanRepository do
     :name => "test craftsman",
     :status => "test status"
   }}
+  let!(:user_role) { create(:user_role) }
 
   let(:craftsman) { repo.create(attrs) }
 

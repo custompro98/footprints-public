@@ -3,6 +3,8 @@ require './lib/craftsmen/craftsmen_presenter'
 require './lib/craftsmen/skills'
 
 describe CraftsmenPresenter do
+  let!(:user_role) { create(:user_role) }
+
   before :each do
     @repo = Footprints::Repository.craftsman
     @seeking_resident_apprentice = @repo.create(name: "Test", employment_id: "1", email: "test@abcinc.com", seeking: true, skill: Skills.get_key_for_skill("Resident"))
